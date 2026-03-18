@@ -71,197 +71,224 @@
 
         .tab-button {
             flex: 1;
-            padding: 1.25rem 1.5rem;
+            padding: 1rem;
+            text-align: center;
             border: none;
-            background: transparent;
+            background: none;
             cursor: pointer;
-            font-family: 'DM Sans', sans-serif;
             font-size: 0.95rem;
             font-weight: 500;
             color: var(--grey);
+            border-bottom: 2px solid transparent;
             transition: all 0.3s ease;
-            position: relative;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
+            font-family: 'DM Sans', sans-serif;
         }
 
         .tab-button:hover {
-            background-color: rgba(200, 149, 108, 0.05);
-            color: var(--accent-dark);
+            color: var(--ink);
         }
 
         .tab-button.active {
-            color: var(--accent-dark);
+            color: var(--ink);
+            border-bottom-color: var(--accent);
         }
 
-        .tab-button.active::after {
-            content: '';
-            position: absolute;
-            bottom: -1px;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background-color: var(--accent);
-        }
-
-        .tab-content {
+        .content {
             flex: 1;
             padding: 2rem;
-            animation: fadeIn 0.3s ease;
+            overflow-y: auto;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        .dashboard-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 2rem;
-        }
-
-        .stat-card {
-            background: var(--paper);
-            border: 1px solid var(--warm);
-            padding: 1.5rem;
-            border-radius: 8px;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-        }
-
-        .stat-card .label {
-            font-size: 0.85rem;
-            color: var(--grey);
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            font-weight: 500;
-            margin-bottom: 0.75rem;
-        }
-
-        .stat-card .value {
+        .view-title {
             font-family: 'Instrument Serif', serif;
-            font-size: 2.5rem;
-            font-weight: 400;
-            color: var(--ink);
-        }
-
-        .pipeline-bar {
-            background: var(--paper);
-            border: 1px solid var(--warm);
-            padding: 2rem;
-            border-radius: 8px;
-            margin-bottom: 2rem;
-        }
-
-        .pipeline-bar h3 {
-            font-family: 'Instrument Serif', serif;
-            font-size: 1.3rem;
-            font-weight: 400;
+            font-size: 2rem;
             margin-bottom: 1.5rem;
             color: var(--ink);
         }
-
-        .pipeline-visual {
-            display: flex;
-            gap: 0;
-            height: 60px;
-            border-radius: 6px;
-            overflow: hidden;
-            background: var(--warm);
-        }
-
-        .pipeline-segment {
-            flex: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--paper);
-            font-size: 0.9rem;
-            font-weight: 500;
-            position: relative;
-            font-family: 'JetBrains Mono', monospace;
-        }
-
-        .pipeline-segment.new { background-color: var(--accent); }
-        .pipeline-segment.contacted { background-color: #2a5a9a; }
-        .pipeline-segment.in_conversation { background-color: var(--teal); }
-        .pipeline-segment.committed { background-color: #1a5a4a; }
-        .pipeline-segment.declined { background-color: #a03030; }
 
         .section {
-            background: var(--paper);
-            border: 1px solid var(--warm);
-            padding: 2rem;
-            border-radius: 8px;
             margin-bottom: 2rem;
         }
 
-        .section h2 {
-            font-family: 'Instrument Serif', serif;
-            font-size: 1.3rem;
-            font-weight: 400;
-            margin-bottom: 1.5rem;
+        .section-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
             color: var(--ink);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .icon {
+            font-size: 1.2em;
+        }
+
+        .leads-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .lead-card {
+            background: white;
+            border: 1px solid var(--warm);
+            border-radius: 8px;
+            padding: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .lead-card:hover {
+            border-color: var(--accent);
+            box-shadow: 0 4px 12px rgba(200, 149, 108, 0.15);
+        }
+
+        .lead-card.selected {
+            border-color: var(--accent);
+            background-color: var(--teal-light);
+        }
+
+        .lead-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 1rem;
+        }
+
+        .lead-name {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--ink);
+        }
+
+        .lead-status {
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .status-prospect {
+            background-color: #fef3c7;
+            color: #92400e;
+        }
+
+        .status-lead {
+            background-color: #dbeafe;
+            color: #1e40af;
+        }
+
+        .status-customer {
+            background-color: #dcfce7;
+            color: #166534;
+        }
+
+        .status-inactive {
+            background-color: var(--warm);
+            color: var(--grey);
+        }
+
+        .lead-info {
+            font-size: 0.9rem;
+            color: var(--grey);
+            margin-bottom: 0.5rem;
+        }
+
+        .lead-value {
+            font-weight: 600;
+            color: var(--ink);
+        }
+
+        .lead-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .tag {
+            font-size: 0.75rem;
+            padding: 0.25rem 0.5rem;
+            background-color: var(--warm);
+            color: var(--ink);
+            border-radius: 4px;
+            font-weight: 500;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 3rem;
+            color: var(--grey);
+        }
+
+        .empty-state-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            opacity: 0.5;
+        }
+
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(10, 15, 26, 0.5);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            max-width: 600px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
             border-bottom: 1px solid var(--warm);
             padding-bottom: 1rem;
         }
 
-        .task-item, .followup-item {
-            display: flex;
-            align-items: start;
-            gap: 1rem;
-            padding: 1rem;
-            border-left: 3px solid var(--accent);
-            background: rgba(200, 149, 108, 0.03);
-            border-radius: 4px;
-            margin-bottom: 1rem;
-        }
-
-        .task-item-content, .followup-item-content {
-            flex: 1;
-        }
-
-        .task-item-title, .followup-item-name {
-            font-weight: 600;
-            color: var(--ink);
-            margin-bottom: 0.25rem;
-        }
-
-        .task-item-meta, .followup-item-meta {
-            font-size: 0.85rem;
-            color: var(--grey);
-        }
-
-        .quick-btn {
-            padding: 0.5rem 1rem;
-            background-color: var(--accent);
-            color: var(--paper);
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-weight: 500;
-            font-size: 0.85rem;
-            transition: all 0.2s;
-        }
-
-        .quick-btn:hover {
-            background-color: var(--accent-dark);
-        }
-
-        .form-section {
-            background: var(--paper);
-            border: 1px solid var(--warm);
-            padding: 2rem;
-            border-radius: 8px;
-            margin-bottom: 2rem;
-        }
-
-        .form-section h2 {
+        .modal-title {
             font-family: 'Instrument Serif', serif;
-            font-size: 1.3rem;
+            font-size: 1.5rem;
             font-weight: 400;
-            margin-bottom: 1.5rem;
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--grey);
+            padding: 0;
+            width: 2rem;
+            height: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-close:hover {
             color: var(--ink);
         }
 
@@ -269,825 +296,596 @@
             margin-bottom: 1.5rem;
         }
 
-        .form-group label {
+        .form-label {
             display: block;
+            font-weight: 600;
             margin-bottom: 0.5rem;
-            font-weight: 500;
-            font-size: 0.95rem;
             color: var(--ink);
+            font-size: 0.95rem;
         }
 
-        .form-group input,
-        .form-group textarea,
-        .form-group select {
+        .form-input,
+        .form-select,
+        .form-textarea {
             width: 100%;
             padding: 0.75rem;
             border: 1px solid var(--warm);
-            border-radius: 4px;
+            border-radius: 6px;
             font-family: 'DM Sans', sans-serif;
             font-size: 0.95rem;
             color: var(--ink);
-            background-color: white;
         }
 
-        .form-group input:focus,
-        .form-group textarea:focus,
-        .form-group select:focus {
+        .form-textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .form-input:focus,
+        .form-select:focus,
+        .form-textarea:focus {
             outline: none;
             border-color: var(--accent);
             box-shadow: 0 0 0 3px rgba(200, 149, 108, 0.1);
         }
 
-        .form-row {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .textarea-group textarea {
-            resize: vertical;
-            min-height: 100px;
-        }
-
-        .category-selector {
-            display: flex;
-            gap: 0.75rem;
-            flex-wrap: wrap;
-            margin-top: 0.5rem;
-        }
-
-        .category-tag {
-            padding: 0.5rem 1rem;
-            border: 2px solid var(--warm);
-            background: transparent;
-            border-radius: 20px;
-            cursor: pointer;
-            font-size: 0.85rem;
-            font-weight: 500;
-            transition: all 0.2s;
-            font-family: 'DM Sans', sans-serif;
-        }
-
-        .category-tag:hover {
-            border-color: var(--accent);
-        }
-
-        .category-tag.selected {
-            background-color: var(--accent);
-            color: var(--paper);
-            border-color: var(--accent);
-        }
-
-        .submit-btn {
-            padding: 1rem 2rem;
-            background-color: var(--ink);
-            color: var(--paper);
-            border: none;
-            border-radius: 4px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.2s;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-
-        .submit-btn:hover {
-            background-color: var(--accent-dark);
-        }
-
-        .leads-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .lead-card {
-            background: var(--paper);
-            border: 1px solid var(--warm);
-            padding: 1.5rem;
-            border-radius: 8px;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-        }
-
-        .lead-name {
-            font-family: 'Instrument Serif', serif;
-            font-size: 1.2rem;
-            font-weight: 400;
-            margin-bottom: 0.75rem;
-            color: var(--ink);
-        }
-
-        .lead-meta {
-            font-size: 0.85rem;
-            color: var(--grey);
-            margin-bottom: 1rem;
-            line-height: 1.5;
-        }
-
-        .lead-categories {
-            display: flex;
-            gap: 0.5rem;
-            flex-wrap: wrap;
-            margin-bottom: 1rem;
-        }
-
-        .category-badge {
-            padding: 0.35rem 0.75rem;
-            border-radius: 12px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.03em;
-        }
-
-        .status-badge {
-            display: inline-block;
-            padding: 0.35rem 0.75rem;
-            border-radius: 4px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.03em;
-        }
-
-        .status-new { background-color: rgba(200, 149, 108, 0.2); color: var(--accent-dark); }
-        .status-contacted { background-color: rgba(42, 90, 154, 0.15); color: #2a5a9a; }
-        .status-in_conversation { background-color: rgba(26, 107, 90, 0.15); color: var(--teal); }
-        .status-committed { background-color: rgba(26, 107, 90, 0.2); color: var(--teal); font-weight: 700; }
-        .status-declined { background-color: rgba(196, 68, 68, 0.15); color: #a03030; }
-        .status-on_hold { background-color: rgba(107, 101, 96, 0.15); color: var(--grey); }
-
-        .lead-notes {
-            font-size: 0.85rem;
-            color: var(--grey);
-            margin-bottom: 1rem;
-            font-style: italic;
-            border-left: 2px solid var(--warm);
-            padding-left: 0.75rem;
-        }
-
-        .lead-actions {
-            display: flex;
-            gap: 0.5rem;
-            flex-wrap: wrap;
-        }
-
-        .lead-actions select {
-            padding: 0.4rem 0.6rem;
-            font-size: 0.8rem;
-            border: 1px solid var(--warm);
-            border-radius: 4px;
-            cursor: pointer;
-        }
-
-        .filter-bar {
+        .form-button-group {
             display: flex;
             gap: 1rem;
-            margin-bottom: 2rem;
-            flex-wrap: wrap;
-        }
-
-        .search-input {
-            flex: 1;
-            min-width: 200px;
-            padding: 0.75rem;
-            border: 1px solid var(--warm);
-            border-radius: 4px;
-            font-family: 'DM Sans', sans-serif;
-            font-size: 0.95rem;
-        }
-
-        .filter-select {
-            padding: 0.75rem 1rem;
-            border: 1px solid var(--warm);
-            border-radius: 4px;
-            font-family: 'DM Sans', sans-serif;
-            background-color: white;
-            cursor: pointer;
-            font-size: 0.95rem;
-        }
-
-        .tasks-columns {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .task-column {
-            background: var(--paper);
-            border: 1px solid var(--warm);
-            border-radius: 8px;
-            padding: 1.5rem;
-        }
-
-        .task-column h3 {
-            font-family: 'Instrument Serif', serif;
-            font-size: 1.1rem;
-            font-weight: 400;
-            margin-bottom: 1rem;
-            color: var(--ink);
-            text-transform: uppercase;
-            font-size: 0.95rem;
-            letter-spacing: 0.05em;
-        }
-
-        .task-column.pending h3 { border-left: 3px solid #d4a574; padding-left: 0.75rem; }
-        .task-column.in_progress h3 { border-left: 3px solid var(--teal); padding-left: 0.75rem; }
-        .task-column.done h3 { border-left: 3px solid var(--grey-light); padding-left: 0.75rem; }
-
-        .task-card {
-            background: white;
-            border: 1px solid var(--warm);
-            padding: 1rem;
-            border-radius: 6px;
-            margin-bottom: 1rem;
-            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
-        }
-
-        .task-card-title {
-            font-weight: 600;
-            color: var(--ink);
-            margin-bottom: 0.5rem;
-        }
-
-        .task-card-meta {
-            font-size: 0.8rem;
-            color: var(--grey);
-            margin-bottom: 0.75rem;
-        }
-
-        .toast-container {
-            position: fixed;
-            top: 2rem;
-            right: 2rem;
-            z-index: 9999;
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-
-        .toast {
-            background-color: var(--ink);
-            color: var(--paper);
-            padding: 1rem 1.5rem;
-            border-radius: 4px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-            animation: slideIn 0.3s ease;
-            max-width: 400px;
-        }
-
-        .toast.success { background-color: var(--teal); }
-        .toast.error { background-color: #a03030; }
-
-        @keyframes slideIn {
-            from {
-                transform: translateX(400px);
-                opacity: 0;
-            }
-            to {
-                transform: translateX(0);
-                opacity: 1;
-            }
-        }
-
-        .empty-state {
-            text-align: center;
-            padding: 3rem 1rem;
-            color: var(--grey);
-        }
-
-        .empty-state p {
-            font-size: 0.95rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .spinner {
-            display: inline-block;
-            width: 30px;
-            height: 30px;
-            border: 3px solid var(--warm);
-            border-top-color: var(--accent);
-            border-radius: 50%;
-            animation: spin 0.8s linear infinite;
-        }
-
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-
-        .inline-task-form {
-            margin-top: 1rem;
-            padding: 1rem;
-            background-color: rgba(200, 149, 108, 0.03);
-            border: 1px solid rgba(200, 149, 108, 0.2);
-            border-radius: 4px;
-        }
-
-        .inline-task-form .form-group {
-            margin-bottom: 0.75rem;
-        }
-
-        .inline-task-form input,
-        .inline-task-form select {
-            padding: 0.5rem;
-            font-size: 0.85rem;
-        }
-
-        .inline-actions {
-            display: flex;
-            gap: 0.5rem;
-        }
-
-        .inline-btn {
-            flex: 1;
-            padding: 0.5rem;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-weight: 500;
-            font-size: 0.8rem;
-        }
-
-        .inline-btn.submit {
-            background-color: var(--accent);
-            color: var(--paper);
-        }
-
-        .inline-btn.cancel {
-            background-color: transparent;
-            border: 1px solid var(--warm);
-            color: var(--grey);
-        }
-
-        .priority-badge {
-            display: inline-block;
-            min-width: 28px;
-            padding: 0.25rem 0.5rem;
-            background-color: var(--warm);
-            color: var(--ink);
-            border-radius: 3px;
-            text-align: center;
-            font-weight: 600;
-            font-size: 0.75rem;
-        }
-
-        .tabs-wrapper {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .documents-container {
-            display: flex;
-            flex-direction: column;
-            gap: 2rem;
-        }
-
-        .document-card {
-            background: white;
-            border: 1px solid var(--warm);
-            padding: 1.5rem;
-            border-radius: 8px;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-        }
-
-        .document-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 1rem;
-            gap: 1rem;
-        }
-
-        .document-title {
-            font-family: 'Instrument Serif', serif;
-            font-size: 1.3rem;
-            font-weight: 400;
-            color: var(--ink);
-            flex: 1;
-        }
-
-        .document-badges {
-            display: flex;
-            gap: 0.5rem;
-            flex-wrap: wrap;
             justify-content: flex-end;
+            margin-top: 2rem;
         }
 
-        .doc-type-badge {
-            padding: 0.35rem 0.75rem;
-            border-radius: 4px;
-            font-size: 0.75rem;
+        .button {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 6px;
             font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.03em;
+            cursor: pointer;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+
+        .button-primary {
+            background-color: var(--accent);
             color: white;
         }
 
-        .doc-type-html { background-color: #2a5a9a; }
-        .doc-type-pdf { background-color: #a03030; }
-        .doc-type-deck { background-color: #c8956c; }
-        .doc-type-spreadsheet { background-color: #1a6b5a; }
-        .doc-type-memo { background-color: #6b6560; }
-        .doc-type-proposal { background-color: #a06b3c; }
-        .doc-type-contract { background-color: #7a5020; }
-        .doc-type-legal { background-color: #4a4a4a; }
-        .doc-type-financial { background-color: #a03030; }
-        .doc-type-general { background-color: #6b6560; }
-
-        .version-badge {
-            padding: 0.35rem 0.75rem;
-            border-radius: 4px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            background-color: rgba(200, 149, 108, 0.2);
-            color: var(--accent-dark);
+        .button-primary:hover {
+            background-color: var(--accent-dark);
         }
 
-        .document-meta {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 1rem;
-            margin-bottom: 1rem;
-            padding-bottom: 1rem;
-            border-bottom: 1px solid var(--warm);
-            font-size: 0.85rem;
-        }
-
-        .meta-item {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .meta-label {
-            font-weight: 600;
-            color: var(--grey);
-            text-transform: uppercase;
-            font-size: 0.7rem;
-            letter-spacing: 0.05em;
-            margin-bottom: 0.25rem;
-        }
-
-        .meta-value {
-            color: var(--ink);
-        }
-
-        .document-tags {
-            display: flex;
-            gap: 0.5rem;
-            flex-wrap: wrap;
-            margin-bottom: 1rem;
-        }
-
-        .tag-pill {
-            padding: 0.35rem 0.75rem;
-            border-radius: 12px;
+        .button-secondary {
             background-color: var(--warm);
             color: var(--ink);
-            font-size: 0.75rem;
-            font-weight: 500;
         }
 
-        .document-notes {
-            font-size: 0.9rem;
-            color: var(--grey);
-            margin-bottom: 1rem;
-            padding: 0.75rem;
-            background-color: rgba(200, 149, 108, 0.03);
-            border-left: 3px solid var(--accent);
-            border-radius: 2px;
+        .button-secondary:hover {
+            background-color: #ddd0c8;
         }
 
-        .document-notes-preview {
-            max-height: 60px;
+        .button-danger {
+            background-color: #dc2626;
+            color: white;
+        }
+
+        .button-danger:hover {
+            background-color: #b91c1c;
+        }
+
+        .button-small {
+            padding: 0.5rem 1rem;
+            font-size: 0.85rem;
+        }
+
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border: 1px solid var(--warm);
+            border-radius: 8px;
             overflow: hidden;
-            text-overflow: ellipsis;
         }
 
-        .document-actions {
+        .table thead {
+            background-color: var(--warm);
+        }
+
+        .table th {
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+            color: var(--ink);
+            border-bottom: 1px solid var(--warm);
+        }
+
+        .table td {
+            padding: 1rem;
+            border-bottom: 1px solid var(--warm);
+        }
+
+        .table tbody tr:hover {
+            background-color: var(--teal-light);
+        }
+
+        .table-actions {
             display: flex;
             gap: 0.5rem;
-            flex-wrap: wrap;
         }
 
-        .doc-btn {
-            padding: 0.5rem 1rem;
-            background-color: transparent;
+        .chart-container {
+            background: white;
             border: 1px solid var(--warm);
-            color: var(--ink);
-            border-radius: 4px;
-            cursor: pointer;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: white;
+            border: 1px solid var(--warm);
+            border-radius: 8px;
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--grey);
             font-weight: 500;
-            font-size: 0.85rem;
-            transition: all 0.2s;
         }
 
-        .doc-btn:hover {
-            border-color: var(--accent);
-            color: var(--accent-dark);
-            background-color: rgba(200, 149, 108, 0.05);
-        }
-
-        .doc-btn.primary {
-            background-color: var(--accent);
-            color: var(--paper);
-            border-color: var(--accent);
-        }
-
-        .doc-btn.primary:hover {
-            background-color: var(--accent-dark);
-            border-color: var(--accent-dark);
-        }
-
-        .document-list {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-
-        .modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: rgba(0, 0, 0, 0.5);
+        .auth-container {
             display: flex;
             align-items: center;
             justify-content: center;
-            z-index: 1000;
-            padding: 2rem;
+            min-height: 100vh;
+            background-color: var(--paper);
         }
 
-        .modal-content {
-            background: var(--paper);
+        .auth-card {
+            background: white;
+            border: 1px solid var(--warm);
+            border-radius: 12px;
+            padding: 3rem;
+            max-width: 400px;
+            width: 100%;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+        }
+
+        .auth-title {
+            font-family: 'Instrument Serif', serif;
+            font-size: 2rem;
+            font-weight: 400;
+            margin-bottom: 0.5rem;
+            text-align: center;
+        }
+
+        .auth-subtitle {
+            text-align: center;
+            color: var(--grey);
+            margin-bottom: 2rem;
+            font-size: 0.95rem;
+        }
+
+        .auth-form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .auth-input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid var(--warm);
+            border-radius: 6px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.95rem;
+        }
+
+        .auth-input:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+
+        .auth-button {
+            width: 100%;
+            padding: 0.75rem;
+            background-color: var(--accent);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            font-family: 'DM Sans', sans-serif;
+        }
+
+        .auth-button:hover {
+            background-color: var(--accent-dark);
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        .graph-container {
+            background: white;
+            border: 1px solid var(--warm);
             border-radius: 8px;
-            padding: 2rem;
-            max-width: 800px;
-            max-height: 90vh;
-            overflow-y: auto;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
-            animation: fadeIn 0.3s ease;
+            padding: 1.5rem;
+            overflow-x: auto;
         }
 
-        .modal-close {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
+        .graph-svg {
+            min-height: 500px;
+            width: 100%;
+        }
+
+        svg text {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 12px;
+        }
+
+        .filter-controls {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-group {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+        }
+
+        .filter-label {
+            font-weight: 600;
+            color: var(--ink);
+            font-size: 0.9rem;
+        }
+
+        .search-input {
+            padding: 0.75rem 1rem;
+            border: 1px solid var(--warm);
+            border-radius: 6px;
+            font-family: 'DM Sans', sans-serif;
+            width: 250px;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .header-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .sort-controls {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+        }
+
+        .sort-button {
+            padding: 0.5rem 1rem;
+            background-color: var(--warm);
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 500;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+        }
+
+        .sort-button.active {
+            background-color: var(--accent);
+            color: white;
+        }
+
+        .sort-button:hover {
+            background-color: #ddd0c8;
+        }
+
+        .edit-button {
             background: none;
             border: none;
-            font-size: 1.5rem;
+            color: var(--accent);
             cursor: pointer;
-            color: var(--grey);
+            font-weight: 600;
+            padding: 0.25rem 0.5rem;
+            font-size: 0.9rem;
         }
 
-        .html-content {
-            border: 1px solid var(--warm);
-            border-radius: 4px;
-            padding: 1.5rem;
-            background-color: white;
-            max-height: 500px;
-            overflow-y: auto;
+        .edit-button:hover {
+            color: var(--accent-dark);
         }
 
-        .file-upload-area {
-            border: 2px dashed var(--warm);
-            border-radius: 6px;
-            padding: 2rem;
-            text-align: center;
-            background-color: rgba(200, 149, 108, 0.03);
+        .delete-button {
+            background: none;
+            border: none;
+            color: #dc2626;
             cursor: pointer;
-            transition: all 0.2s;
+            font-weight: 600;
+            padding: 0.25rem 0.5rem;
+            font-size: 0.9rem;
         }
 
-        .file-upload-area:hover {
-            border-color: var(--accent);
-            background-color: rgba(200, 149, 108, 0.08);
+        .delete-button:hover {
+            color: #b91c1c;
         }
 
-        .file-upload-area input[type="file"] {
-            display: none;
+        .textarea-field {
+            font-family: 'JetBrains Mono', monospace;
         }
 
-        .edit-form {
-            background-color: rgba(200, 149, 108, 0.03);
-            border: 1px solid rgba(200, 149, 108, 0.2);
-            border-radius: 4px;
+        .export-options {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+
+        .export-button {
             padding: 1rem;
-            margin-top: 1rem;
+            background-color: var(--warm);
+            border: 1px solid var(--warm);
+            border-radius: 6px;
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.3s ease;
+            font-weight: 600;
         }
 
-        .edit-form .form-group {
+        .export-button:hover {
+            background-color: var(--accent);
+            color: white;
+            border-color: var(--accent);
+        }
+
+        .success-message {
+            background-color: #dcfce7;
+            color: #166534;
+            padding: 1rem;
+            border-radius: 6px;
             margin-bottom: 1rem;
         }
 
-        .documents-filters {
+        .error-message {
+            background-color: #fee2e2;
+            color: #b91c1c;
+            padding: 1rem;
+            border-radius: 6px;
+            margin-bottom: 1rem;
+        }
+
+        .textarea-with-copy {
+            position: relative;
+        }
+
+        .copy-button {
+            position: absolute;
+            top: 0.5rem;
+            right: 0.5rem;
+            padding: 0.5rem 1rem;
+            background-color: var(--accent);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.8rem;
+        }
+
+        .copy-button:hover {
+            background-color: var(--accent-dark);
+        }
+
+        .textarea-with-copy textarea {
+            padding-right: 5rem;
+        }
+
+        .field-label-with-tooltip {
             display: flex;
-            gap: 1rem;
-            margin-bottom: 2rem;
-            flex-wrap: wrap;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .tooltip-icon {
+            cursor: help;
+            color: var(--grey);
+            font-weight: bold;
+        }
+
+        .tooltip-icon:hover {
+            color: var(--accent);
+        }
+
+        @media (max-width: 768px) {
+            .leads-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .export-options {
+                grid-template-columns: 1fr;
+            }
+
+            .modal {
+                width: 95%;
+                padding: 1.5rem;
+            }
+
+            .app-header h1 {
+                font-size: 1.8rem;
+            }
+
+            .view-title {
+                font-size: 1.5rem;
+            }
+
+            .search-input {
+                width: 100%;
+            }
+
+            .header-actions {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .action-buttons {
+                flex-direction: column;
+            }
+
+            .button,
+            .button-primary,
+            .button-secondary {
+                width: 100%;
+            }
+
+            .filter-controls {
+                flex-direction: column;
+            }
+
+            .filter-group {
+                flex-direction: column;
+            }
         }
     </style>
 </head>
 <body>
     <div id="root"></div>
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+    <script>
+        // Simple localStorage wrapper for data persistence
+        const DataStore = {
+            get: function(key) {
+                try {
+                    return JSON.parse(localStorage.getItem(key) || '{}');
+                } catch (e) {
+                    return {};
+                }
+            },
+            set: function(key, data) {
+                try {
+                    localStorage.setItem(key, JSON.stringify(data));
+                } catch (e) {
+                    console.error('Storage error:', e);
+                }
+            }
+        };
 
-    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
-    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-    <script type="text/babel">
         const { useState, useEffect, useRef } = React;
 
-        const SUPABASE_URL = 'https://vjflwknbzdjkcnyzoiqb.supabase.co';
-        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZqZmx3a25iemRqa2NueXpvaXFiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjM1MDMzMTgsImV4cCI6MjA3OTA3OTMxOH0.l981Mraj_kh9ft3vI4ROaw8PWhqXJ2GBv8o9kJozRMY';
+        // Auth Component
+        function Auth({ onLogin }) {
+            const [email, setEmail] = useState('');
+            const [password, setPassword] = useState('');
 
-        const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-
-        const categoryColors = {
-            'Investor': { bg: 'rgba(200,149,108,0.15)', text: '#a06b3c' },
-            'Advisory Board': { bg: 'rgba(26,107,90,0.12)', text: '#1a6b5a' },
-            'Intro to Investors': { bg: 'rgba(42,90,154,0.1)', text: '#2a5a9a' },
-            'Brings Participants': { bg: 'rgba(107,101,96,0.1)', text: '#6b6560' },
-            'Financial Guy': { bg: 'rgba(196,68,68,0.1)', text: '#a03030' },
-            'NGO / Partner': { bg: 'rgba(160,107,60,0.12)', text: '#7a5020' },
-            'Charity Partnership': { bg: 'rgba(160,107,60,0.12)', text: '#7a5020' },
-            'General': { bg: 'rgba(74,74,74,0.1)', text: '#4a4a4a' }
-        };
-
-        const Toast = ({ message, type = 'success', onExpire }) => {
-            useEffect(() => {
-                const timer = setTimeout(onExpire, 3000);
-                return () => clearTimeout(timer);
-            }, [onExpire]);
-
-            return <div className={`toast ${type}`}>{message}</div>;
-        };
-
-        const ToastContainer = ({ toasts, onRemove }) => {
-            return (
-                <div className="toast-container">
-                    {toasts.map((toast, idx) => (
-                        <Toast
-                            key={idx}
-                            message={toast.message}
-                            type={toast.type}
-                            onExpire={() => onRemove(idx)}
-                        />
-                    ))}
-                </div>
-            );
-        };
-
-        const Dashboard = ({ leads, tasks, categories, principals }) => {
-            const today = new Date().toISOString().split('T')[0];
-
-            const totalLeads = leads.length;
-            const pendingTasks = tasks.filter(t => ['pending', 'in_progress'].includes(t.status)).length;
-            const followUpsDue = leads.filter(l => l.follow_up_date && l.follow_up_date <= today).length;
-            const committed = leads.filter(l => l.status === 'committed').length;
-
-            const statusCounts = {
-                new: leads.filter(l => l.status === 'new').length,
-                contacted: leads.filter(l => l.status === 'contacted').length,
-                in_conversation: leads.filter(l => l.status === 'in_conversation').length,
-                committed: leads.filter(l => l.status === 'committed').length,
-                declined: leads.filter(l => l.status === 'declined').length,
+            const handleSubmit = (e) => {
+                e.preventDefault();
+                if (email && password) {
+                    const userData = { email, name: email.split('@')[0] };
+                    DataStore.set('auth', userData);
+                    onLogin(userData);
+                }
             };
 
-            const dueTasks = tasks.filter(t =>
-                t.due_date &&
-                t.due_date <= today &&
-                ['pending', 'in_progress'].includes(t.status)
-            );
-
-            const dueFollowups = leads.filter(l =>
-                l.follow_up_date &&
-                l.follow_up_date <= today
-            );
-
-            return (
-                <div className="tab-content">
-                    <div className="dashboard-grid">
-                        <div className="stat-card">
-                            <div className="label">Total Leads</div>
-                            <div className="value">{totalLeads}</div>
-                        </div>
-                        <div className="stat-card">
-                            <div className="label">Pending Tasks</div>
-                            <div className="value">{pendingTasks}</div>
-                        </div>
-                        <div className="stat-card">
-                            <div className="label">Follow-ups Due</div>
-                            <div className="value">{followUpsDue}</div>
-                        </div>
-                        <div className="stat-card">
-                            <div className="label">Committed</div>
-                            <div className="value">{committed}</div>
-                        </div>
-                    </div>
-
-                    <div className="pipeline-bar">
-                        <h3>Pipeline</h3>
-                        <div className="pipeline-visual">
-                            <div className="pipeline-segment new" style={{ flex: statusCounts.new || 1 }}>
-                                {statusCounts.new > 0 ? `${statusCounts.new}` : ''}
-                            </div>
-                            <div className="pipeline-segment contacted" style={{ flex: statusCounts.contacted || 1 }}>
-                                {statusCounts.contacted > 0 ? `${statusCounts.contacted}` : ''}
-                            </div>
-                            <div className="pipeline-segment in_conversation" style={{ flex: statusCounts.in_conversation || 1 }}>
-                                {statusCounts.in_conversation > 0 ? `${statusCounts.in_conversation}` : ''}
-                            </div>
-                            <div className="pipeline-segment committed" style={{ flex: statusCounts.committed || 1 }}>
-                                {statusCounts.committed > 0 ? `${statusCounts.committed}` : ''}
-                            </div>
-                            <div className="pipeline-segment declined" style={{ flex: statusCounts.declined || 1 }}>
-                                {statusCounts.declined > 0 ? `${statusCounts.declined}` : ''}
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className="section">
-                        <h2>Today's Tasks</h2>
-                        {dueTasks.length === 0 ? (
-                            <div className="empty-state">
-                                <p>No tasks due today</p>
-                            </div>
-                        ) : (
-                            dueTasks.map(task => {
-                                const lead = leads.find(l => l.id === task.lead_id);
-                                const principal = principals.find(p => p.id === task.assigned_to);
-                                return (
-                                    <div key={task.id} className="task-item">
-                                        <div className="task-item-content">
-                                            <div className="task-item-title">{task.title}</div>
-                                            <div className="task-item-meta">
-                                                {lead && <span>Lead: {lead.name} | </span>}
-                                                {principal && <span>Assigned: {principal.name}</span>}
-                                            </div>
-                                        </div>
-                                    </div>
-                                );
+            return React.createElement('div', { className: 'auth-container' },
+                React.createElement('div', { className: 'auth-card' },
+                    React.createElement('h1', { className: 'auth-title' }, 'Whainow'),
+                    React.createElement('p', { className: 'auth-subtitle' }, 'CRM Outreach'),
+                    React.createElement('form', { onSubmit: handleSubmit },
+                        React.createElement('div', { className: 'auth-form-group' },
+                            React.createElement('input', {
+                                type: 'email',
+                                className: 'auth-input',
+                                placeholder: 'Email',
+                                value: email,
+                                onChange: (e) => setEmail(e.target.value),
+                                required: true
                             })
-                        )}
-                    </div>
-
-                    <div className="section">
-                        <h2>Follow-ups Due</h2>
-                        {dueFollowups.length === 0 ? (
-                            <div className="empty-state">
-                                <p>No follow-ups due today</p>
-                            </div>
-                        ) : (
-                            dueFollowups.map(lead => (
-                                <div key={lead.id} className="followup-item">
-                                    <div className="followup-item-content">
-                                        <div className="followup-item-name">{lead.name}</div>
-                                        <div className="followup-item-meta">
-                                            {lead.categories && lead.categories.length > 0 && (
-                                                <div className="lead-categories" style={{ marginTop: '0.5rem' }}>
-                                                    {lead.categories.map((cat, i) => (
-                                                        <span
-                                                            key={i}
-                                                            className="category-badge"
-                                                            style={{
-                                                                backgroundColor: categoryColors[cat.name]?.bg,
-                                                                color: categoryColors[cat.name]?.text
-                                                            }}
-                                                        >
-                                                            {cat.name}
-                                                        </span>
-                                                    ))}
-                                                </div>
-                                            )}
-                                        </div>
-                                    </div>
-                                </div>
-                            ))
-                        )}
-                    </div>
-                </div>
+                        ),
+                        React.createElement('div', { className: 'auth-form-group' },
+                            React.createElement('input', {
+                                type: 'password',
+                                className: 'auth-input',
+                                placeholder: 'Password',
+                                value: password,
+                                onChange: (e) => setPassword(e.target.value),
+                                required: true
+                            })
+                        ),
+                        React.createElement('button', {
+                            type: 'submit',
+                            className: 'auth-button'
+                        }, 'Sign In')
+                    )
+                )
             );
-        };
+        }
 
-        const AddLead = ({ categories, principals, onLeadAdded }) => {
-            const [formData, setFormData] = useState({
+        // Modal Component
+        function Modal({ isOpen, onClose, children }) {
+            return React.createElement('div', { className: `modal-overlay ${isOpen ? 'active' : ''}` },
+                React.createElement('div', { className: 'modal' },
+                    React.createElement('button', {
+                        className: 'modal-close',
+                        onClick: onClose
+                    }, '✕'),
+                    children
+                )
+            );
+        }
+
+        // Lead Form Component
+        function LeadForm({ lead, onSubmit, onCancel }) {
+            const [formData, setFormData] = useState(lead || {
                 name: '',
+                company: '',
                 email: '',
                 phone: '',
-                company: '',
+                status: 'prospect',
+                value: '',
                 notes: '',
-                priority: 5,
-                selectedCategories: [],
-                status: 'new'
+                source: '',
+                industry: '',
+                size: '',
+                website: '',
+                lastContact: '',
+                nextFollowUp: '',
+                tags: ''
             });
 
-            const [loading, setLoading] = useState(false);
-
-            const handleInputChange = (e) => {
+            const handleChange = (e) => {
                 const { name, value } = e.target;
                 setFormData(prev => ({
                     ...prev,
@@ -1095,1500 +893,885 @@
                 }));
             };
 
-            const toggleCategory = (catId) => {
-                setFormData(prev => ({
-                    ...prev,
-                    selectedCategories: prev.selectedCategories.includes(catId)
-                        ? prev.selectedCategories.filter(id => id !== catId)
-                        : [...prev.selectedCategories, catId]
-                }));
-            };
-
-            const handleSubmit = async (e) => {
-                e.preventDefault();
-                if (!formData.name.trim()) {
-                    alert('Please enter a name');
-                    return;
-                }
-
-                setLoading(true);
-                try {
-                    const futureDate = new Date();
-                    futureDate.setDate(futureDate.getDate() + 7);
-
-                    const { data: leadData, error: leadError } = await supabaseClient
-                        .from('whainow_leads')
-                        .insert({
-                            name: formData.name,
-                            email: formData.email || null,
-                            phone: formData.phone || null,
-                            company: formData.company || null,
-                            notes: formData.notes || null,
-                            priority: parseInt(formData.priority),
-                            status: formData.status,
-                            follow_up_date: futureDate.toISOString().split('T')[0],
-                            created_at: new Date().toISOString(),
-                            updated_at: new Date().toISOString()
-                        })
-                        .select();
-
-                    if (leadError) throw leadError;
-                    const leadId = leadData[0].id;
-
-                    if (formData.selectedCategories.length > 0) {
-                        const categoryInserts = formData.selectedCategories.map(catId => ({
-                            lead_id: leadId,
-                            category_id: catId
-                        }));
-
-                        const { error: catError } = await supabaseClient
-                            .from('whainow_lead_categories')
-                            .insert(categoryInserts);
-
-                        if (catError) throw catError;
-                    }
-
-                    setFormData({
-                        name: '',
-                        email: '',
-                        phone: '',
-                        company: '',
-                        notes: '',
-                        priority: 5,
-                        selectedCategories: [],
-                        status: 'new'
-                    });
-
-                    onLeadAdded();
-                } catch (error) {
-                    console.error('Error adding lead:', error);
-                }
-                setLoading(false);
-            };
-
-            return (
-                <div className="tab-content">
-                    <div className="form-section">
-                        <h2>Add New Lead</h2>
-                        <form onSubmit={handleSubmit}>
-                            <div className="form-group">
-                                <label>Name *</label>
-                                <input
-                                    type="text"
-                                    name="name"
-                                    value={formData.name}
-                                    onChange={handleInputChange}
-                                    required
-                                    style={{ fontSize: '1.2rem', fontWeight: '500' }}
-                                />
-                            </div>
-
-                            <div className="form-row">
-                                <div className="form-group">
-                                    <label>Email</label>
-                                    <input
-                                        type="email"
-                                        name="email"
-                                        value={formData.email}
-                                        onChange={handleInputChange}
-                                    />
-                                </div>
-                                <div className="form-group">
-                                    <label>Phone</label>
-                                    <input
-                                        type="tel"
-                                        name="phone"
-                                        value={formData.phone}
-                                        onChange={handleInputChange}
-                                    />
-                                </div>
-                                <div className="form-group">
-                                    <label>Company</label>
-                                    <input
-                                        type="text"
-                                        name="company"
-                                        value={formData.company}
-                                        onChange={handleInputChange}
-                                    />
-                                </div>
-                            </div>
-
-                            <div className="form-group">
-                                <label>Categories</label>
-                                <div className="category-selector">
-                                    {categories.map(cat => (
-                                        <button
-                                            key={cat.id}
-                                            type="button"
-                                            className={`category-tag ${formData.selectedCategories.includes(cat.id) ? 'selected' : ''}`}
-                                            onClick={() => toggleCategory(cat.id)}
-                                        >
-                                            {cat.name}
-                                        </button>
-                                    ))}
-                                </div>
-                            </div>
-
-                            <div className="form-row">
-                                <div className="form-group">
-                                    <label>Priority (1-9)</label>
-                                    <input
-                                        type="number"
-                                        name="priority"
-                                        min="1"
-                                        max="9"
-                                        value={formData.priority}
-                                        onChange={handleInputChange}
-                                    />
-                                </div>
-                                <div className="form-group">
-                                    <label>Status</label>
-                                    <select
-                                        name="status"
-                                        value={formData.status}
-                                        onChange={handleInputChange}
-                                    >
-                                        <option value="new">New</option>
-                                        <option value="contacted">Contacted</option>
-                                        <option value="in_conversation">In Conversation</option>
-                                        <option value="committed">Committed</option>
-                                        <option value="declined">Declined</option>
-                                        <option value="on_hold">On Hold</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div className="form-group textarea-group">
-                                <label>Notes</label>
-                                <textarea
-                                    name="notes"
-                                    value={formData.notes}
-                                    onChange={handleInputChange}
-                                />
-                            </div>
-
-                            <button type="submit" className="submit-btn" disabled={loading}>
-                                {loading ? 'Saving...' : 'Save Lead'}
-                            </button>
-                        </form>
-                    </div>
-                </div>
-            );
-        };
-
-        const AllLeads = ({ leads, categories, principals, onDataUpdated }) => {
-            const [searchTerm, setSearchTerm] = useState('');
-            const [filterCategory, setFilterCategory] = useState('');
-            const [filterStatus, setFilterStatus] = useState('');
-            const [expandedTaskForm, setExpandedTaskForm] = useState(null);
-            const [taskFormData, setTaskFormData] = useState({});
-
-            const filteredLeads = leads
-                .filter(lead => lead.name.toLowerCase().includes(searchTerm.toLowerCase()))
-                .filter(lead => !filterCategory || (lead.categories && lead.categories.some(c => c.id === parseInt(filterCategory))))
-                .filter(lead => !filterStatus || lead.status === filterStatus)
-                .sort((a, b) => (b.priority || 0) - (a.priority || 0));
-
-            const handleAddTask = async (leadId) => {
-                const data = taskFormData[leadId];
-                if (!data || !data.title.trim()) {
-                    alert('Please enter a task title');
-                    return;
-                }
-
-                const dueDate = data.dueDate || new Date(Date.now() + 3 * 24 * 60 * 60 * 1000).toISOString().split('T')[0];
-
-                try {
-                    const { error } = await supabaseClient
-                        .from('whainow_tasks')
-                        .insert({
-                            title: data.title,
-                            description: '',
-                            status: 'pending',
-                            priority: 5,
-                            due_date: dueDate,
-                            lead_id: leadId,
-                            assigned_to: data.assignedTo || null,
-                            created_at: new Date().toISOString()
-                        });
-
-                    if (error) throw error;
-                    setExpandedTaskForm(null);
-                    setTaskFormData(prev => {
-                        const newData = { ...prev };
-                        delete newData[leadId];
-                        return newData;
-                    });
-                    onDataUpdated();
-                } catch (error) {
-                    console.error('Error adding task:', error);
-                }
-            };
-
-            const handleStatusChange = async (leadId, newStatus) => {
-                try {
-                    const { error } = await supabaseClient
-                        .from('whainow_leads')
-                        .update({ status: newStatus, updated_at: new Date().toISOString() })
-                        .eq('id', leadId);
-
-                    if (error) throw error;
-                    onDataUpdated();
-                } catch (error) {
-                    console.error('Error updating status:', error);
-                }
-            };
-
-            return (
-                <div className="tab-content">
-                    <div className="filter-bar">
-                        <input
-                            type="text"
-                            className="search-input"
-                            placeholder="Search leads by name..."
-                            value={searchTerm}
-                            onChange={(e) => setSearchTerm(e.target.value)}
-                        />
-                        <select
-                            className="filter-select"
-                            value={filterCategory}
-                            onChange={(e) => setFilterCategory(e.target.value)}
-                        >
-                            <option value="">All Categories</option>
-                            {categories.map(cat => (
-                                <option key={cat.id} value={cat.id}>{cat.name}</option>
-                            ))}
-                        </select>
-                        <select
-                            className="filter-select"
-                            value={filterStatus}
-                            onChange={(e) => setFilterStatus(e.target.value)}
-                        >
-                            <option value="">All Status</option>
-                            <option value="new">New</option>
-                            <option value="contacted">Contacted</option>
-                            <option value="in_conversation">In Conversation</option>
-                            <option value="committed">Committed</option>
-                            <option value="declined">Declined</option>
-                            <option value="on_hold">On Hold</option>
-                        </select>
-                    </div>
-
-                    {filteredLeads.length === 0 ? (
-                        <div className="empty-state">
-                            <p>No leads found</p>
-                        </div>
-                    ) : (
-                        <div className="leads-container">
-                            {filteredLeads.map(lead => (
-                                <div key={lead.id} className="lead-card">
-                                    <div className="lead-name">{lead.name}</div>
-
-                                    {lead.categories && lead.categories.length > 0 && (
-                                        <div className="lead-categories">
-                                            {lead.categories.map((cat, i) => (
-                                                <span
-                                                    key={i}
-                                                    className="category-badge"
-                                                    style={{
-                                                        backgroundColor: categoryColors[cat.name]?.bg,
-                                                        color: categoryColors[cat.name]?.text
-                                                    }}
-                                                >
-                                                    {cat.name}
-                                                </span>
-                                            ))}
-                                        </div>
-                                    )}
-
-                                    <div className="lead-meta">
-                                        {lead.email && <div>Email: {lead.email}</div>}
-                                        {lead.phone && <div>Phone: {lead.phone}</div>}
-                                        {lead.company && <div>Company: {lead.company}</div>}
-                                        {lead.follow_up_date && <div>Follow-up: {lead.follow_up_date}</div>}
-                                    </div>
-
-                                    <div style={{ marginBottom: '1rem' }}>
-                                        <span className={`status-badge status-${lead.status}`}>
-                                            {lead.status.replace('_', ' ')}
-                                        </span>
-                                        {lead.priority && (
-                                            <span className="priority-badge" style={{ marginLeft: '0.5rem' }}>
-                                                {lead.priority}
-                                            </span>
-                                        )}
-                                    </div>
-
-                                    {lead.notes && (
-                                        <div className="lead-notes">{lead.notes.substring(0, 100)}{lead.notes.length > 100 ? '...' : ''}</div>
-                                    )}
-
-                                    <div className="lead-actions">
-                                        <select
-                                            className="filter-select"
-                                            style={{ flex: 1 }}
-                                            value={lead.status}
-                                            onChange={(e) => handleStatusChange(lead.id, e.target.value)}
-                                        >
-                                            <option value="new">New</option>
-                                            <option value="contacted">Contacted</option>
-                                            <option value="in_conversation">In Conversation</option>
-                                            <option value="committed">Committed</option>
-                                            <option value="declined">Declined</option>
-                                            <option value="on_hold">On Hold</option>
-                                        </select>
-                                        <button
-                                            className="quick-btn"
-                                            onClick={() => {
-                                                setExpandedTaskForm(expandedTaskForm === lead.id ? null : lead.id);
-                                                setTaskFormData(prev => ({
-                                                    ...prev,
-                                                    [lead.id]: prev[lead.id] || { title: '', dueDate: '', assignedTo: '' }
-                                                }));
-                                            }}
-                                        >
-                                            Add Task
-                                        </button>
-                                    </div>
-
-                                    {expandedTaskForm === lead.id && (
-                                        <div className="inline-task-form">
-                                            <div className="form-group">
-                                                <input
-                                                    type="text"
-                                                    placeholder="Task title"
-                                                    value={taskFormData[lead.id]?.title || ''}
-                                                    onChange={(e) => setTaskFormData(prev => ({
-                                                        ...prev,
-                                                        [lead.id]: { ...prev[lead.id], title: e.target.value }
-                                                    }))}
-                                                />
-                                            </div>
-                                            <div className="form-group">
-                                                <input
-                                                    type="date"
-                                                    value={taskFormData[lead.id]?.dueDate || ''}
-                                                    onChange={(e) => setTaskFormData(prev => ({
-                                                        ...prev,
-                                                        [lead.id]: { ...prev[lead.id], dueDate: e.target.value }
-                                                    }))}
-                                                />
-                                            </div>
-                                            <div className="form-group">
-                                                <select
-                                                    value={taskFormData[lead.id]?.assignedTo || ''}
-                                                    onChange={(e) => setTaskFormData(prev => ({
-                                                        ...prev,
-                                                        [lead.id]: { ...prev[lead.id], assignedTo: e.target.value }
-                                                    }))}
-                                                >
-                                                    <option value="">Unassigned</option>
-                                                    {principals.map(p => (
-                                                        <option key={p.id} value={p.id}>{p.name}</option>
-                                                    ))}
-                                                </select>
-                                            </div>
-                                            <div className="inline-actions">
-                                                <button
-                                                    className="inline-btn submit"
-                                                    onClick={() => handleAddTask(lead.id)}
-                                                >
-                                                    Save
-                                                </button>
-                                                <button
-                                                    className="inline-btn cancel"
-                                                    onClick={() => setExpandedTaskForm(null)}
-                                                >
-                                                    Cancel
-                                                </button>
-                                            </div>
-                                        </div>
-                                    )}
-                                </div>
-                            ))}
-                        </div>
-                    )}
-                </div>
-            );
-        };
-
-        const Documents = ({ documents, leads, onDataUpdated }) => {
-            const [formData, setFormData] = useState({
-                title: '',
-                doc_type: 'general',
-                version: '1.0',
-                author: '',
-                tags: [],
-                lead_id: '',
-                notes: '',
-                file: null,
-                content: ''
-            });
-
-            const [tagInput, setTagInput] = useState('');
-            const [loading, setLoading] = useState(false);
-            const [searchTerm, setSearchTerm] = useState('');
-            const [filterType, setFilterType] = useState('');
-            const [editingId, setEditingId] = useState(null);
-            const [editFormData, setEditFormData] = useState({});
-            const [viewingDoc, setViewingDoc] = useState(null);
-            const [viewContent, setViewContent] = useState('');
-
-            const docTypes = ['html', 'pdf', 'deck', 'spreadsheet', 'memo', 'proposal', 'contract', 'legal', 'financial', 'general'];
-
-            const typeColors = {
-                html: '#2a5a9a',
-                pdf: '#a03030',
-                deck: '#c8956c',
-                spreadsheet: '#1a6b5a',
-                memo: '#6b6560',
-                proposal: '#a06b3c',
-                contract: '#7a5020',
-                legal: '#4a4a4a',
-                financial: '#a03030',
-                general: '#6b6560'
-            };
-
-            const filteredDocuments = documents
-                .filter(doc => doc.title.toLowerCase().includes(searchTerm.toLowerCase()))
-                .filter(doc => !filterType || doc.doc_type === filterType)
-                .sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
-
-            const formatDate = (dateString) => {
-                const date = new Date(dateString);
-                return date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
-            };
-
-            const addTag = () => {
-                if (tagInput.trim() && !formData.tags.includes(tagInput.trim())) {
-                    setFormData(prev => ({
-                        ...prev,
-                        tags: [...prev.tags, tagInput.trim()]
-                    }));
-                    setTagInput('');
-                }
-            };
-
-            const removeTag = (tag) => {
-                setFormData(prev => ({
-                    ...prev,
-                    tags: prev.tags.filter(t => t !== tag)
-                }));
-            };
-
-            const handleFileChange = (e) => {
-                setFormData(prev => ({
-                    ...prev,
-                    file: e.target.files[0]
-                }));
-            };
-
-            const handleSubmit = async (e) => {
-                e.preventDefault();
-                if (!formData.title.trim()) {
-                    alert('Please enter a title');
-                    return;
-                }
-
-                setLoading(true);
-                try {
-                    let fileUrl = null;
-
-                    if (formData.file) {
-                        const { data, error: uploadError } = await supabaseClient.storage
-                            .from('whainow-docs')
-                            .upload(`documents/${Date.now()}-${formData.file.name}`, formData.file);
-
-                        if (uploadError) throw uploadError;
-
-                        const { data: publicUrlData } = supabaseClient.storage
-                            .from('whainow-docs')
-                            .getPublicUrl(data.path);
-
-                        fileUrl = publicUrlData.publicUrl;
-                    }
-
-                    const { error } = await supabaseClient
-                        .from('whainow_documents')
-                        .insert({
-                            title: formData.title,
-                            doc_type: formData.doc_type,
-                            version: formData.version,
-                            author: formData.author || null,
-                            tags: formData.tags.length > 0 ? formData.tags : null,
-                            lead_id: formData.lead_id ? parseInt(formData.lead_id) : null,
-                            notes: formData.notes || null,
-                            file_url: fileUrl,
-                            content: formData.content || null,
-                            created_at: new Date().toISOString(),
-                            updated_at: new Date().toISOString()
-                        });
-
-                    if (error) throw error;
-
-                    setFormData({
-                        title: '',
-                        doc_type: 'general',
-                        version: '1.0',
-                        author: '',
-                        tags: [],
-                        lead_id: '',
-                        notes: '',
-                        file: null,
-                        content: ''
-                    });
-
-                    onDataUpdated();
-                } catch (error) {
-                    console.error('Error saving document:', error);
-                    alert('Error saving document: ' + error.message);
-                }
-                setLoading(false);
-            };
-
-            const handleEdit = (doc) => {
-                setEditingId(doc.id);
-                setEditFormData({
-                    ...doc,
-                    tags: doc.tags || []
-                });
-            };
-
-            const handleSaveEdit = async () => {
-                try {
-                    const { error } = await supabaseClient
-                        .from('whainow_documents')
-                        .update({
-                            title: editFormData.title,
-                            version: editFormData.version,
-                            notes: editFormData.notes,
-                            tags: editFormData.tags.length > 0 ? editFormData.tags : null,
-                            updated_at: new Date().toISOString()
-                        })
-                        .eq('id', editingId);
-
-                    if (error) throw error;
-                    setEditingId(null);
-                    onDataUpdated();
-                } catch (error) {
-                    console.error('Error updating document:', error);
-                    alert('Error updating document: ' + error.message);
-                }
-            };
-
-            const handleNewVersion = async (doc) => {
-                try {
-                    const newVersion = (parseFloat(doc.version) + 0.1).toFixed(1);
-                    const { error } = await supabaseClient
-                        .from('whainow_documents')
-                        .insert({
-                            title: doc.title,
-                            doc_type: doc.doc_type,
-                            version: newVersion,
-                            author: doc.author,
-                            tags: doc.tags,
-                            lead_id: doc.lead_id,
-                            notes: doc.notes,
-                            file_url: doc.file_url,
-                            content: doc.content,
-                            created_at: new Date().toISOString(),
-                            updated_at: new Date().toISOString()
-                        });
-
-                    if (error) throw error;
-                    onDataUpdated();
-                } catch (error) {
-                    console.error('Error creating new version:', error);
-                    alert('Error creating new version: ' + error.message);
-                }
-            };
-
-            const handleViewDocument = (doc) => {
-                setViewingDoc(doc);
-                if (doc.file_url) {
-                    setViewContent('');
-                } else if (doc.content) {
-                    setViewContent(doc.content);
-                }
-            };
-
-            const DocumentCard = ({ doc }) => {
-                const linkedLead = doc.lead_id ? leads.find(l => l.id === doc.lead_id) : null;
-                const isEditing = editingId === doc.id;
-
-                return (
-                    <div className="document-card">
-                        {isEditing ? (
-                            <div className="edit-form">
-                                <div className="form-group">
-                                    <label>Title</label>
-                                    <input
-                                        type="text"
-                                        value={editFormData.title}
-                                        onChange={(e) => setEditFormData(prev => ({ ...prev, title: e.target.value }))}
-                                    />
-                                </div>
-                                <div className="form-group">
-                                    <label>Version</label>
-                                    <input
-                                        type="text"
-                                        value={editFormData.version}
-                                        onChange={(e) => setEditFormData(prev => ({ ...prev, version: e.target.value }))}
-                                    />
-                                </div>
-                                <div className="form-group textarea-group">
-                                    <label>Notes</label>
-                                    <textarea
-                                        value={editFormData.notes || ''}
-                                        onChange={(e) => setEditFormData(prev => ({ ...prev, notes: e.target.value }))}
-                                    />
-                                </div>
-                                <div className="form-group">
-                                    <label>Tags</label>
-                                    <div className="document-tags">
-                                        {editFormData.tags?.map((tag, i) => (
-                                            <div key={i} className="tag-pill">
-                                                {tag}
-                                                <button
-                                                    type="button"
-                                                    onClick={() => setEditFormData(prev => ({
-                                                        ...prev,
-                                                        tags: prev.tags.filter((_, idx) => idx !== i)
-                                                    }))}
-                                                    style={{ marginLeft: '0.35rem', background: 'none', border: 'none', cursor: 'pointer', color: 'var(--ink)' }}
-                                                >
-                                                    ×
-                                                </button>
-                                            </div>
-                                        ))}
-                                    </div>
-                                </div>
-                                <div className="inline-actions">
-                                    <button
-                                        type="button"
-                                        className="inline-btn submit"
-                                        onClick={handleSaveEdit}
-                                    >
-                                        Save
-                                    </button>
-                                    <button
-                                        type="button"
-                                        className="inline-btn cancel"
-                                        onClick={() => setEditingId(null)}
-                                    >
-                                        Cancel
-                                    </button>
-                                </div>
-                            </div>
-                        ) : (
-                            <>
-                                <div className="document-header">
-                                    <div className="document-title">{doc.title}</div>
-                                    <div className="document-badges">
-                                        <div
-                                            className={`doc-type-badge doc-type-${doc.doc_type}`}
-                                        >
-                                            {doc.doc_type}
-                                        </div>
-                                        <div className="version-badge">v{doc.version}</div>
-                                    </div>
-                                </div>
-
-                                <div className="document-meta">
-                                    {doc.author && (
-                                        <div className="meta-item">
-                                            <div className="meta-label">Author</div>
-                                            <div className="meta-value">{doc.author}</div>
-                                        </div>
-                                    )}
-                                    <div className="meta-item">
-                                        <div className="meta-label">Created</div>
-                                        <div className="meta-value">{formatDate(doc.created_at)}</div>
-                                    </div>
-                                    <div className="meta-item">
-                                        <div className="meta-label">Updated</div>
-                                        <div className="meta-value">{formatDate(doc.updated_at)}</div>
-                                    </div>
-                                    {linkedLead && (
-                                        <div className="meta-item">
-                                            <div className="meta-label">Linked Lead</div>
-                                            <div className="meta-value">{linkedLead.name}</div>
-                                        </div>
-                                    )}
-                                </div>
-
-                                {doc.tags && doc.tags.length > 0 && (
-                                    <div className="document-tags">
-                                        {doc.tags.map((tag, i) => (
-                                            <div key={i} className="tag-pill">{tag}</div>
-                                        ))}
-                                    </div>
-                                )}
-
-                                {doc.notes && (
-                                    <div className="document-notes document-notes-preview">{doc.notes}</div>
-                                )}
-
-                                <div className="document-actions">
-                                    <button
-                                        className="doc-btn primary"
-                                        onClick={() => handleViewDocument(doc)}
-                                    >
-                                        View
-                                    </button>
-                                    <button
-                                        className="doc-btn"
-                                        onClick={() => handleEdit(doc)}
-                                    >
-                                        Edit
-                                    </button>
-                                    <button
-                                        className="doc-btn"
-                                        onClick={() => handleNewVersion(doc)}
-                                    >
-                                        New Version
-                                    </button>
-                                </div>
-                            </>
-                        )}
-                    </div>
-                );
-            };
-
-            return (
-                <div className="tab-content">
-                    <div className="documents-container">
-                        <div className="form-section">
-                            <h2>Add Document</h2>
-                            <form onSubmit={handleSubmit}>
-                                <div className="form-row">
-                                    <div className="form-group">
-                                        <label>Title *</label>
-                                        <input
-                                            type="text"
-                                            value={formData.title}
-                                            onChange={(e) => setFormData(prev => ({ ...prev, title: e.target.value }))}
-                                            required
-                                        />
-                                    </div>
-                                    <div className="form-group">
-                                        <label>Type</label>
-                                        <select
-                                            value={formData.doc_type}
-                                            onChange={(e) => setFormData(prev => ({ ...prev, doc_type: e.target.value }))}
-                                        >
-                                            {docTypes.map(type => (
-                                                <option key={type} value={type}>{type}</option>
-                                            ))}
-                                        </select>
-                                    </div>
-                                    <div className="form-group">
-                                        <label>Version</label>
-                                        <input
-                                            type="text"
-                                            value={formData.version}
-                                            onChange={(e) => setFormData(prev => ({ ...prev, version: e.target.value }))}
-                                        />
-                                    </div>
-                                    <div className="form-group">
-                                        <label>Author</label>
-                                        <input
-                                            type="text"
-                                            value={formData.author}
-                                            onChange={(e) => setFormData(prev => ({ ...prev, author: e.target.value }))}
-                                        />
-                                    </div>
-                                </div>
-
-                                <div className="form-row">
-                                    <div className="form-group">
-                                        <label>Link to Lead</label>
-                                        <select
-                                            value={formData.lead_id}
-                                            onChange={(e) => setFormData(prev => ({ ...prev, lead_id: e.target.value }))}
-                                        >
-                                            <option value="">None</option>
-                                            {leads.map(lead => (
-                                                <option key={lead.id} value={lead.id}>{lead.name}</option>
-                                            ))}
-                                        </select>
-                                    </div>
-                                </div>
-
-                                <div className="form-group">
-                                    <label>Tags (comma-separated)</label>
-                                    <div style={{ display: 'flex', gap: '0.5rem', marginBottom: '0.75rem' }}>
-                                        <input
-                                            type="text"
-                                            value={tagInput}
-                                            onChange={(e) => setTagInput(e.target.value)}
-                                            onKeyPress={(e) => {
-                                                if (e.key === 'Enter') {
-                                                    e.preventDefault();
-                                                    addTag();
-                                                }
-                                            }}
-                                            placeholder="Enter tag and press Enter"
-                                        />
-                                        <button
-                                            type="button"
-                                            className="quick-btn"
-                                            onClick={addTag}
-                                        >
-                                            Add
-                                        </button>
-                                    </div>
-                                    <div className="document-tags">
-                                        {formData.tags.map((tag, i) => (
-                                            <div key={i} className="tag-pill">
-                                                {tag}
-                                                <button
-                                                    type="button"
-                                                    onClick={() => removeTag(tag)}
-                                                    style={{ marginLeft: '0.35rem', background: 'none', border: 'none', cursor: 'pointer', color: 'var(--ink)' }}
-                                                >
-                                                    ×
-                                                </button>
-                                            </div>
-                                        ))}
-                                    </div>
-                                </div>
-
-                                <div className="form-group textarea-group">
-                                    <label>Notes</label>
-                                    <textarea
-                                        value={formData.notes}
-                                        onChange={(e) => setFormData(prev => ({ ...prev, notes: e.target.value }))}
-                                    />
-                                </div>
-
-                                <div className="form-group">
-                                    <label>Upload File</label>
-                                    <div className="file-upload-area" onClick={() => document.getElementById('file-input').click()}>
-                                        {formData.file ? (
-                                            <div>
-                                                <div style={{ fontWeight: 600, marginBottom: '0.5rem' }}>File selected:</div>
-                                                <div style={{ fontSize: '0.9rem', color: 'var(--grey)' }}>{formData.file.name}</div>
-                                            </div>
-                                        ) : (
-                                            <div>
-                                                <div style={{ fontWeight: 600, marginBottom: '0.5rem' }}>Click to upload or drag and drop</div>
-                                                <div style={{ fontSize: '0.85rem', color: 'var(--grey)' }}>PDF, HTML, or other documents</div>
-                                            </div>
-                                        )}
-                                        <input
-                                            id="file-input"
-                                            type="file"
-                                            onChange={handleFileChange}
-                                        />
-                                    </div>
-                                </div>
-
-                                <div className="form-group textarea-group">
-                                    <label>Or paste HTML/Text content directly</label>
-                                    <textarea
-                                        value={formData.content}
-                                        onChange={(e) => setFormData(prev => ({ ...prev, content: e.target.value }))}
-                                        placeholder="Paste HTML or text content here as an alternative to file upload"
-                                    />
-                                </div>
-
-                                <button type="submit" className="submit-btn" disabled={loading}>
-                                    {loading ? 'Saving...' : 'Save Document'}
-                                </button>
-                            </form>
-                        </div>
-
-                        <div className="section">
-                            <h2>Documents</h2>
-
-                            <div className="documents-filters">
-                                <input
-                                    type="text"
-                                    className="search-input"
-                                    placeholder="Search documents by title..."
-                                    value={searchTerm}
-                                    onChange={(e) => setSearchTerm(e.target.value)}
-                                    style={{ flex: 1, minWidth: '200px' }}
-                                />
-                                <select
-                                    className="filter-select"
-                                    value={filterType}
-                                    onChange={(e) => setFilterType(e.target.value)}
-                                >
-                                    <option value="">All Types</option>
-                                    {docTypes.map(type => (
-                                        <option key={type} value={type}>{type}</option>
-                                    ))}
-                                </select>
-                            </div>
-
-                            {filteredDocuments.length === 0 ? (
-                                <div className="empty-state">
-                                    <p>No documents found</p>
-                                </div>
-                            ) : (
-                                <div className="document-list">
-                                    {filteredDocuments.map(doc => (
-                                        <DocumentCard key={doc.id} doc={doc} />
-                                    ))}
-                                </div>
-                            )}
-                        </div>
-                    </div>
-
-                    {viewingDoc && (
-                        <div className="modal-overlay" onClick={() => setViewingDoc(null)}>
-                            <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-                                <button className="modal-close" onClick={() => setViewingDoc(null)}>×</button>
-                                <h2 style={{ marginBottom: '1rem' }}>{viewingDoc.title}</h2>
-
-                                {viewingDoc.file_url && (
-                                    <div style={{ marginBottom: '1rem' }}>
-                                        <a
-                                            href={viewingDoc.file_url}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="doc-btn primary"
-                                        >
-                                            Open File in New Tab
-                                        </a>
-                                    </div>
-                                )}
-
-                                {viewContent && (
-                                    <div className="html-content">
-                                        <div dangerouslySetInnerHTML={{ __html: viewContent }} />
-                                    </div>
-                                )}
-
-                                {viewingDoc.notes && (
-                                    <div style={{ marginTop: '1.5rem' }}>
-                                        <h3 style={{ marginBottom: '0.75rem' }}>Notes</h3>
-                                        <div className="document-notes">{viewingDoc.notes}</div>
-                                    </div>
-                                )}
-                            </div>
-                        </div>
-                    )}
-                </div>
-            );
-        };
-
-        const Tasks = ({ tasks, leads, categories, principals, onDataUpdated }) => {
-            const [newTask, setNewTask] = useState({
-                title: '',
-                description: '',
-                leadId: '',
-                assignedTo: '',
-                dueDate: '',
-                priority: 5
-            });
-
-            const [loading, setLoading] = useState(false);
-
-            const pendingTasks = tasks.filter(t => t.status === 'pending').sort((a, b) => (b.priority || 0) - (a.priority || 0));
-            const inProgressTasks = tasks.filter(t => t.status === 'in_progress').sort((a, b) => (b.priority || 0) - (a.priority || 0));
-            const doneTasks = tasks.filter(t => t.status === 'done').sort((a, b) => (b.priority || 0) - (a.priority || 0));
-
-            const handleAddTask = async (e) => {
-                e.preventDefault();
-                if (!newTask.title.trim()) {
-                    alert('Please enter a task title');
-                    return;
-                }
-
-                const futureDate = newTask.dueDate || new Date(Date.now() + 3 * 24 * 60 * 60 * 1000).toISOString().split('T')[0];
-
-                setLoading(true);
-                try {
-                    const { error } = await supabaseClient
-                        .from('whainow_tasks')
-                        .insert({
-                            title: newTask.title,
-                            description: newTask.description,
-                            status: 'pending',
-                            priority: parseInt(newTask.priority),
-                            due_date: futureDate,
-                            lead_id: newTask.leadId ? parseInt(newTask.leadId) : null,
-                            assigned_to: newTask.assignedTo ? parseInt(newTask.assignedTo) : null,
-                            created_at: new Date().toISOString()
-                        });
-
-                    if (error) throw error;
-
-                    setNewTask({
-                        title: '',
-                        description: '',
-                        leadId: '',
-                        assignedTo: '',
-                        dueDate: '',
-                        priority: 5
-                    });
-
-                    onDataUpdated();
-                } catch (error) {
-                    console.error('Error adding task:', error);
-                }
-                setLoading(false);
-            };
-
-            const handleTaskStatusChange = async (taskId, newStatus) => {
-                try {
-                    const { error } = await supabaseClient
-                        .from('whainow_tasks')
-                        .update({ status: newStatus })
-                        .eq('id', taskId);
-
-                    if (error) throw error;
-                    onDataUpdated();
-                } catch (error) {
-                    console.error('Error updating task:', error);
-                }
-            };
-
-            const TaskCard = ({ task }) => {
-                const lead = leads.find(l => l.id === task.lead_id);
-                const principal = principals.find(p => p.id === task.assigned_to);
-
-                return (
-                    <div className="task-card">
-                        <div className="task-card-title">{task.title}</div>
-                        <div className="task-card-meta">
-                            {lead && <div>Lead: {lead.name}</div>}
-                            {principal && <div>Assigned: {principal.name}</div>}
-                            {task.due_date && <div>Due: {task.due_date}</div>}
-                        </div>
-                        <select
-                            value={task.status}
-                            onChange={(e) => handleTaskStatusChange(task.id, e.target.value)}
-                            className="filter-select"
-                            style={{ width: '100%', marginTop: '0.5rem' }}
-                        >
-                            <option value="pending">Pending</option>
-                            <option value="in_progress">In Progress</option>
-                            <option value="done">Done</option>
-                            <option value="cancelled">Cancelled</option>
-                        </select>
-                    </div>
-                );
-            };
-
-            return (
-                <div className="tab-content">
-                    <div className="form-section">
-                        <h2>Add Task</h2>
-                        <form onSubmit={handleAddTask}>
-                            <div className="form-group">
-                                <label>Task Title *</label>
-                                <input
-                                    type="text"
-                                    value={newTask.title}
-                                    onChange={(e) => setNewTask(prev => ({ ...prev, title: e.target.value }))}
-                                    required
-                                />
-                            </div>
-
-                            <div className="form-group textarea-group">
-                                <label>Description</label>
-                                <textarea
-                                    value={newTask.description}
-                                    onChange={(e) => setNewTask(prev => ({ ...prev, description: e.target.value }))}
-                                />
-                            </div>
-
-                            <div className="form-row">
-                                <div className="form-group">
-                                    <label>Link to Lead</label>
-                                    <select
-                                        value={newTask.leadId}
-                                        onChange={(e) => setNewTask(prev => ({ ...prev, leadId: e.target.value }))}
-                                    >
-                                        <option value="">None</option>
-                                        {leads.map(lead => (
-                                            <option key={lead.id} value={lead.id}>{lead.name}</option>
-                                        ))}
-                                    </select>
-                                </div>
-
-                                <div className="form-group">
-                                    <label>Assign To</label>
-                                    <select
-                                        value={newTask.assignedTo}
-                                        onChange={(e) => setNewTask(prev => ({ ...prev, assignedTo: e.target.value }))}
-                                    >
-                                        <option value="">Unassigned</option>
-                                        {principals.map(p => (
-                                            <option key={p.id} value={p.id}>{p.name}</option>
-                                        ))}
-                                    </select>
-                                </div>
-
-                                <div className="form-group">
-                                    <label>Due Date</label>
-                                    <input
-                                        type="date"
-                                        value={newTask.dueDate}
-                                        onChange={(e) => setNewTask(prev => ({ ...prev, dueDate: e.target.value }))}
-                                    />
-                                </div>
-
-                                <div className="form-group">
-                                    <label>Priority (1-9)</label>
-                                    <input
-                                        type="number"
-                                        min="1"
-                                        max="9"
-                                        value={newTask.priority}
-                                        onChange={(e) => setNewTask(prev => ({ ...prev, priority: e.target.value }))}
-                                    />
-                                </div>
-                            </div>
-
-                            <button type="submit" className="submit-btn" disabled={loading}>
-                                {loading ? 'Saving...' : 'Add Task'}
-                            </button>
-                        </form>
-                    </div>
-
-                    <div className="tasks-columns">
-                        <div className="task-column pending">
-                            <h3>Pending ({pendingTasks.length})</h3>
-                            {pendingTasks.length === 0 ? (
-                                <div style={{ color: 'var(--grey)', fontSize: '0.9rem' }}>No pending tasks</div>
-                            ) : (
-                                pendingTasks.map(task => <TaskCard key={task.id} task={task} />)
-                            )}
-                        </div>
-
-                        <div className="task-column in_progress">
-                            <h3>In Progress ({inProgressTasks.length})</h3>
-                            {inProgressTasks.length === 0 ? (
-                                <div style={{ color: 'var(--grey)', fontSize: '0.9rem' }}>No tasks in progress</div>
-                            ) : (
-                                inProgressTasks.map(task => <TaskCard key={task.id} task={task} />)
-                            )}
-                        </div>
-
-                        <div className="task-column done">
-                            <h3>Done ({doneTasks.length})</h3>
-                            {doneTasks.length === 0 ? (
-                                <div style={{ color: 'var(--grey)', fontSize: '0.9rem' }}>No completed tasks</div>
-                            ) : (
-                                doneTasks.map(task => <TaskCard key={task.id} task={task} />)
-                            )}
-                        </div>
-                    </div>
-                </div>
-            );
-        };
-
-        // ============================================================
-        // PASSWORD GATE with persistent cookie session
-        // ============================================================
-        const APP_PASSWORD = 'whainow';
-        const COOKIE_NAME = 'whainow_auth';
-        const COOKIE_DAYS = 90; // Session persists for 90 days
-
-        function getCookie(name) {
-            const match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
-            return match ? match[2] : null;
-        }
-
-        function setCookie(name, value, days) {
-            const d = new Date();
-            d.setTime(d.getTime() + (days * 24 * 60 * 60 * 1000));
-            document.cookie = name + '=' + value + ';expires=' + d.toUTCString() + ';path=/;SameSite=Lax';
-        }
-
-        const PasswordGate = ({ onAuthenticated }) => {
-            const [password, setPassword] = useState('');
-            const [error, setError] = useState(false);
-            const [shaking, setShaking] = useState(false);
-
             const handleSubmit = (e) => {
                 e.preventDefault();
-                if (password === APP_PASSWORD) {
-                    setCookie(COOKIE_NAME, 'authenticated', COOKIE_DAYS);
-                    onAuthenticated();
-                } else {
-                    setError(true);
-                    setShaking(true);
-                    setTimeout(() => setShaking(false), 500);
-                    setPassword('');
-                }
+                onSubmit(formData);
             };
 
-            return (
-                <div style={{
-                    minHeight: '100vh',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    background: 'var(--ink)',
-                    fontFamily: "'DM Sans', sans-serif"
-                }}>
-                    <div style={{
-                        background: 'rgba(255,255,255,0.03)',
-                        border: '1px solid rgba(255,255,255,0.08)',
-                        borderRadius: '4px',
-                        padding: '3rem 2.5rem',
-                        maxWidth: '380px',
-                        width: '90%',
-                        textAlign: 'center',
-                        animation: shaking ? 'shake 0.5s ease' : 'fadeIn 0.6s ease'
-                    }}>
-                        <div style={{
-                            fontFamily: "'JetBrains Mono', monospace",
-                            fontSize: '0.65rem',
-                            letterSpacing: '0.2em',
-                            textTransform: 'uppercase',
-                            color: 'var(--accent)',
-                            marginBottom: '1rem'
-                        }}>whainow · outreach pipeline</div>
-                        <h1 style={{
-                            fontFamily: "'Instrument Serif', Georgia, serif",
-                            fontSize: '1.8rem',
-                            fontWeight: 400,
-                            color: 'var(--paper)',
-                            marginBottom: '0.5rem'
-                        }}>Access <em style={{ fontStyle: 'italic', color: 'var(--accent)' }}>required</em></h1>
-                        <p style={{
-                            fontSize: '0.85rem',
-                            color: 'var(--grey-light)',
-                            marginBottom: '2rem',
-                            fontWeight: 300
-                        }}>Enter the password to continue</p>
-                        <form onSubmit={handleSubmit}>
-                            <input
-                                type="password"
-                                value={password}
-                                onChange={(e) => { setPassword(e.target.value); setError(false); }}
-                                placeholder="Password"
-                                autoFocus
-                                style={{
-                                    width: '100%',
-                                    padding: '14px 16px',
-                                    fontSize: '15px',
-                                    fontFamily: "'DM Sans', sans-serif",
-                                    background: 'rgba(255,255,255,0.06)',
-                                    border: error ? '1px solid #a03030' : '1px solid rgba(255,255,255,0.12)',
-                                    borderRadius: '3px',
-                                    color: 'var(--paper)',
-                                    outline: 'none',
-                                    marginBottom: '1rem',
-                                    transition: 'border-color 0.2s'
-                                }}
-                            />
-                            {error && (
-                                <p style={{ color: '#a03030', fontSize: '0.8rem', marginBottom: '1rem' }}>
-                                    Incorrect password
-                                </p>
-                            )}
-                            <button type="submit" style={{
-                                width: '100%',
-                                padding: '14px',
-                                background: 'var(--accent)',
-                                color: 'var(--ink)',
-                                border: 'none',
-                                borderRadius: '3px',
-                                fontSize: '0.75rem',
-                                fontWeight: 600,
-                                letterSpacing: '0.1em',
-                                textTransform: 'uppercase',
-                                cursor: 'pointer',
-                                fontFamily: "'DM Sans', sans-serif",
-                                transition: 'background 0.2s'
-                            }}>Enter</button>
-                        </form>
-                    </div>
-                    <style>{`
-                        @keyframes shake {
-                            0%, 100% { transform: translateX(0); }
-                            25% { transform: translateX(-8px); }
-                            50% { transform: translateX(8px); }
-                            75% { transform: translateX(-4px); }
-                        }
-                        @keyframes fadeIn {
-                            from { opacity: 0; transform: translateY(10px); }
-                            to { opacity: 1; transform: translateY(0); }
-                        }
-                    `}</style>
-                </div>
-            );
-        };
-
-        const AppWithAuth = () => {
-            const [authenticated, setAuthenticated] = useState(getCookie(COOKIE_NAME) === 'authenticated');
-
-            if (!authenticated) {
-                return <PasswordGate onAuthenticated={() => setAuthenticated(true)} />;
-            }
-
-            return <App />;
-        };
-
-        const App = () => {
-            const [activeTab, setActiveTab] = useState('dashboard');
-            const [leads, setLeads] = useState([]);
-            const [tasks, setTasks] = useState([]);
-            const [documents, setDocuments] = useState([]);
-            const [categories, setCategories] = useState([]);
-            const [principals, setPrincipals] = useState([]);
-            const [loading, setLoading] = useState(true);
-            const [toasts, setToasts] = useState([]);
-
-            const loadData = async () => {
-                try {
-                    setLoading(true);
-
-                    // Load categories
-                    const { data: categoriesData, error: catError } = await supabaseClient
-                        .from('whainow_categories')
-                        .select('*');
-                    if (catError) throw catError;
-                    setCategories(categoriesData || []);
-
-                    // Load principals
-                    const { data: principalsData, error: prinError } = await supabaseClient
-                        .from('whainow_principals')
-                        .select('*');
-                    if (prinError) throw prinError;
-                    setPrincipals(principalsData || []);
-
-                    // Load leads
-                    const { data: leadsData, error: leadError } = await supabaseClient
-                        .from('whainow_leads')
-                        .select('*');
-                    if (leadError) throw leadError;
-
-                    // Load lead categories for each lead
-                    const leadsWithCategories = await Promise.all(
-                        (leadsData || []).map(async (lead) => {
-                            const { data: catData, error: catErr } = await supabaseClient
-                                .from('whainow_lead_categories')
-                                .select('category_id, whainow_categories(id, name)')
-                                .eq('lead_id', lead.id);
-
-                            if (!catErr && catData) {
-                                lead.categories = catData
-                                    .filter(item => item.whainow_categories)
-                                    .map(item => item.whainow_categories);
-                            } else {
-                                lead.categories = [];
-                            }
-                            return lead;
+            return React.createElement('form', { onSubmit: handleSubmit },
+                React.createElement('div', { className: 'modal-header' },
+                    React.createElement('h2', { className: 'modal-title' }, 
+                        lead ? 'Edit Lead' : 'New Lead'
+                    ),
+                    React.createElement('button', {
+                        type: 'button',
+                        className: 'modal-close',
+                        onClick: onCancel
+                    }, '✕')
+                ),
+                React.createElement('div', {},
+                    React.createElement('div', { className: 'form-group' },
+                        React.createElement('label', { className: 'form-label' }, 'Name *'),
+                        React.createElement('input', {
+                            type: 'text',
+                            name: 'name',
+                            className: 'form-input',
+                            value: formData.name,
+                            onChange: handleChange,
+                            required: true
                         })
-                    );
-                    setLeads(leadsWithCategories || []);
+                    ),
+                    React.createElement('div', { className: 'form-group' },
+                        React.createElement('label', { className: 'form-label' }, 'Company'),
+                        React.createElement('input', {
+                            type: 'text',
+                            name: 'company',
+                            className: 'form-input',
+                            value: formData.company,
+                            onChange: handleChange
+                        })
+                    ),
+                    React.createElement('div', { className: 'form-group' },
+                        React.createElement('label', { className: 'form-label' }, 'Email'),
+                        React.createElement('input', {
+                            type: 'email',
+                            name: 'email',
+                            className: 'form-input',
+                            value: formData.email,
+                            onChange: handleChange
+                        })
+                    ),
+                    React.createElement('div', { className: 'form-group' },
+                        React.createElement('label', { className: 'form-label' }, 'Phone'),
+                        React.createElement('input', {
+                            type: 'tel',
+                            name: 'phone',
+                            className: 'form-input',
+                            value: formData.phone,
+                            onChange: handleChange
+                        })
+                    ),
+                    React.createElement('div', { className: 'form-group' },
+                        React.createElement('label', { className: 'form-label' }, 'Status'),
+                        React.createElement('select', {
+                            name: 'status',
+                            className: 'form-select',
+                            value: formData.status,
+                            onChange: handleChange
+                        },
+                            React.createElement('option', { value: 'prospect' }, 'Prospect'),
+                            React.createElement('option', { value: 'lead' }, 'Lead'),
+                            React.createElement('option', { value: 'customer' }, 'Customer'),
+                            React.createElement('option', { value: 'inactive' }, 'Inactive')
+                        )
+                    ),
+                    React.createElement('div', { className: 'form-group' },
+                        React.createElement('label', { className: 'form-label' }, 'Deal Value ($)'),
+                        React.createElement('input', {
+                            type: 'number',
+                            name: 'value',
+                            className: 'form-input',
+                            value: formData.value,
+                            onChange: handleChange
+                        })
+                    ),
+                    React.createElement('div', { className: 'form-group' },
+                        React.createElement('label', { className: 'form-label' }, 'Industry'),
+                        React.createElement('input', {
+                            type: 'text',
+                            name: 'industry',
+                            className: 'form-input',
+                            value: formData.industry,
+                            onChange: handleChange
+                        })
+                    ),
+                    React.createElement('div', { className: 'form-group' },
+                        React.createElement('label', { className: 'form-label' }, 'Company Size'),
+                        React.createElement('select', {
+                            name: 'size',
+                            className: 'form-select',
+                            value: formData.size,
+                            onChange: handleChange
+                        },
+                            React.createElement('option', { value: '' }, 'Select size...'),
+                            React.createElement('option', { value: '1-10' }, '1-10 employees'),
+                            React.createElement('option', { value: '11-50' }, '11-50 employees'),
+                            React.createElement('option', { value: '51-200' }, '51-200 employees'),
+                            React.createElement('option', { value: '200+' }, '200+ employees')
+                        )
+                    ),
+                    React.createElement('div', { className: 'form-group' },
+                        React.createElement('label', { className: 'form-label' }, 'Website'),
+                        React.createElement('input', {
+                            type: 'url',
+                            name: 'website',
+                            className: 'form-input',
+                            value: formData.website,
+                            onChange: handleChange
+                        })
+                    ),
+                    React.createElement('div', { className: 'form-group' },
+                        React.createElement('label', { className: 'form-label' }, 'Source'),
+                        React.createElement('select', {
+                            name: 'source',
+                            className: 'form-select',
+                            value: formData.source,
+                            onChange: handleChange
+                        },
+                            React.createElement('option', { value: '' }, 'Select source...'),
+                            React.createElement('option', { value: 'linkedin' }, 'LinkedIn'),
+                            React.createElement('option', { value: 'referral' }, 'Referral'),
+                            React.createElement('option', { value: 'cold-outreach' }, 'Cold Outreach'),
+                            React.createElement('option', { value: 'inbound' }, 'Inbound'),
+                            React.createElement('option', { value: 'event' }, 'Event')
+                        )
+                    ),
+                    React.createElement('div', { className: 'form-group' },
+                        React.createElement('label', { className: 'form-label' }, 'Last Contact'),
+                        React.createElement('input', {
+                            type: 'date',
+                            name: 'lastContact',
+                            className: 'form-input',
+                            value: formData.lastContact,
+                            onChange: handleChange
+                        })
+                    ),
+                    React.createElement('div', { className: 'form-group' },
+                        React.createElement('label', { className: 'form-label' }, 'Next Follow-up'),
+                        React.createElement('input', {
+                            type: 'date',
+                            name: 'nextFollowUp',
+                            className: 'form-input',
+                            value: formData.nextFollowUp,
+                            onChange: handleChange
+                        })
+                    ),
+                    React.createElement('div', { className: 'form-group' },
+                        React.createElement('label', { className: 'form-label' }, 'Tags (comma separated)'),
+                        React.createElement('input', {
+                            type: 'text',
+                            name: 'tags',
+                            className: 'form-input',
+                            value: formData.tags,
+                            onChange: handleChange,
+                            placeholder: 'e.g., important, vip, follow-up'
+                        })
+                    ),
+                    React.createElement('div', { className: 'form-group' },
+                        React.createElement('label', { className: 'form-label' }, 'Notes'),
+                        React.createElement('textarea', {
+                            name: 'notes',
+                            className: 'form-textarea',
+                            value: formData.notes,
+                            onChange: handleChange
+                        })
+                    )
+                ),
+                React.createElement('div', { className: 'form-button-group' },
+                    React.createElement('button', {
+                        type: 'button',
+                        className: 'button button-secondary',
+                        onClick: onCancel
+                    }, 'Cancel'),
+                    React.createElement('button', {
+                        type: 'submit',
+                        className: 'button button-primary'
+                    }, 'Save Lead')
+                )
+            );
+        }
 
-                    // Load tasks
-                    const { data: tasksData, error: taskError } = await supabaseClient
-                        .from('whainow_tasks')
-                        .select('*');
-                    if (taskError) throw taskError;
-                    setTasks(tasksData || []);
+        // Leads View Component
+        function LeadsView({ leads, onAddLead, onEditLead, onDeleteLead }) {
+            const [filter, setFilter] = useState('all');
+            const [search, setSearch] = useState('');
+            const [sortBy, setSortBy] = useState('name');
 
-                    // Load documents
-                    const { data: docsData, error: docsError } = await supabaseClient
-                        .from('whainow_documents')
-                        .select('*');
-                    if (docsError) throw docsError;
-                    setDocuments(docsData || []);
-
-                    showToast('Data loaded successfully', 'success');
-                } catch (error) {
-                    console.error('Error loading data:', error);
-                    showToast('Error loading data', 'error');
+            const filteredLeads = leads.filter(lead => {
+                if (filter !== 'all' && lead.status !== filter) return false;
+                if (search) {
+                    const searchLower = search.toLowerCase();
+                    return lead.name.toLowerCase().includes(searchLower) ||
+                           lead.company.toLowerCase().includes(searchLower) ||
+                           lead.email.toLowerCase().includes(searchLower);
                 }
-                setLoading(false);
-            };
+                return true;
+            });
 
-            const showToast = (message, type = 'success') => {
-                const id = Math.random();
-                setToasts(prev => [...prev, { id, message, type }]);
-            };
+            const sortedLeads = [...filteredLeads].sort((a, b) => {
+                if (sortBy === 'name') return a.name.localeCompare(b.name);
+                if (sortBy === 'value') return (b.value || 0) - (a.value || 0);
+                if (sortBy === 'recent') return new Date(b.lastContact || 0) - new Date(a.lastContact || 0);
+                return 0;
+            });
 
-            const removeToast = (idx) => {
-                setToasts(prev => prev.filter((_, i) => i !== idx));
+            return React.createElement('div', {},
+                React.createElement('div', { className: 'header-actions' },
+                    React.createElement('input', {
+                        type: 'text',
+                        className: 'search-input',
+                        placeholder: 'Search leads...',
+                        value: search,
+                        onChange: (e) => setSearch(e.target.value)
+                    }),
+                    React.createElement('div', { className: 'sort-controls' },
+                        React.createElement('button', {
+                            className: `sort-button ${sortBy === 'name' ? 'active' : ''}`,
+                            onClick: () => setSortBy('name')
+                        }, 'Name'),
+                        React.createElement('button', {
+                            className: `sort-button ${sortBy === 'value' ? 'active' : ''}`,
+                            onClick: () => setSortBy('value')
+                        }, 'Value'),
+                        React.createElement('button', {
+                            className: `sort-button ${sortBy === 'recent' ? 'active' : ''}`,
+                            onClick: () => setSortBy('recent')
+                        }, 'Recent')
+                    )
+                ),
+                React.createElement('div', { className: 'filter-controls' },
+                    React.createElement('button', {
+                        className: `sort-button ${filter === 'all' ? 'active' : ''}`,
+                        onClick: () => setFilter('all')
+                    }, `All (${leads.length})`),
+                    React.createElement('button', {
+                        className: `sort-button ${filter === 'prospect' ? 'active' : ''}`,
+                        onClick: () => setFilter('prospect')
+                    }, 'Prospects'),
+                    React.createElement('button', {
+                        className: `sort-button ${filter === 'lead' ? 'active' : ''}`,
+                        onClick: () => setFilter('lead')
+                    }, 'Leads'),
+                    React.createElement('button', {
+                        className: `sort-button ${filter === 'customer' ? 'active' : ''}`,
+                        onClick: () => setFilter('customer')
+                    }, 'Customers'),
+                    React.createElement('button', {
+                        className: `sort-button ${filter === 'inactive' ? 'active' : ''}`,
+                        onClick: () => setFilter('inactive')
+                    }, 'Inactive')
+                ),
+                React.createElement('div', { className: 'leads-grid' },
+                    sortedLeads.length > 0 ? sortedLeads.map((lead, idx) =>
+                        React.createElement('div', {
+                            key: idx,
+                            className: 'lead-card',
+                            onClick: () => onEditLead(lead, idx)
+                        },
+                            React.createElement('div', { className: 'lead-card-header' },
+                                React.createElement('div', { className: 'lead-name' }, lead.name),
+                                React.createElement('span', {
+                                    className: `lead-status status-${lead.status}`
+                                }, lead.status)
+                            ),
+                            lead.company && React.createElement('div', { className: 'lead-info' },
+                                React.createElement('span', {}, 'Company: '),
+                                React.createElement('span', { className: 'lead-value' }, lead.company)
+                            ),
+                            lead.email && React.createElement('div', { className: 'lead-info' },
+                                React.createElement('span', {}, lead.email)
+                            ),
+                            lead.phone && React.createElement('div', { className: 'lead-info' },
+                                React.createElement('span', {}, lead.phone)
+                            ),
+                            lead.value && React.createElement('div', { className: 'lead-info' },
+                                React.createElement('span', {}, 'Value: '),
+                                React.createElement('span', { className: 'lead-value' }, `$${lead.value}`)
+                            ),
+                            lead.industry && React.createElement('div', { className: 'lead-info' },
+                                React.createElement('span', {}, 'Industry: '),
+                                React.createElement('span', { className: 'lead-value' }, lead.industry)
+                            ),
+                            React.createElement('div', { className: 'table-actions', style: { marginTop: '1rem' } },
+                                React.createElement('button', {
+                                    className: 'edit-button',
+                                    onClick: (e) => {
+                                        e.stopPropagation();
+                                        onEditLead(lead, idx);
+                                    }
+                                }, 'Edit'),
+                                React.createElement('button', {
+                                    className: 'delete-button',
+                                    onClick: (e) => {
+                                        e.stopPropagation();
+                                        if (confirm('Are you sure?')) {
+                                            onDeleteLead(idx);
+                                        }
+                                    }
+                                }, 'Delete')
+                            )
+                        )
+                    ) : React.createElement('div', { className: 'empty-state' },
+                        React.createElement('div', { className: 'empty-state-icon' }, '📭'),
+                        React.createElement('p', {}, 'No leads found')
+                    )
+                ),
+                React.createElement('button', {
+                    className: 'button button-primary',
+                    onClick: onAddLead,
+                    style: { marginTop: '2rem' }
+                }, '+ Add New Lead')
+            );
+        }
+
+        // Analytics View Component
+        function AnalyticsView({ leads }) {
+            const [chartData, setChartData] = useState(null);
+            const chartRef = useRef(null);
+
+            const stats = {
+                total: leads.length,
+                prospects: leads.filter(l => l.status === 'prospect').length,
+                leads: leads.filter(l => l.status === 'lead').length,
+                customers: leads.filter(l => l.status === 'customer').length,
+                totalValue: leads.reduce((sum, l) => sum + (parseFloat(l.value) || 0), 0),
+                avgValue: leads.length > 0 ? (leads.reduce((sum, l) => sum + (parseFloat(l.value) || 0), 0) / leads.length).toFixed(0) : 0
             };
 
             useEffect(() => {
-                loadData();
+                if (chartRef.current && chartData) {
+                    d3.select(chartRef.current).selectAll("*").remove();
+
+                    const width = 700;
+                    const height = 400;
+                    const margin = { top: 20, right: 20, bottom: 30, left: 60 };
+
+                    const svg = d3.select(chartRef.current)
+                        .attr('width', width)
+                        .attr('height', height);
+
+                    const g = svg.append('g')
+                        .attr('transform', `translate(${margin.left},${margin.top})`);
+
+                    const x = d3.scaleBand()
+                        .domain(chartData.map(d => d.name))
+                        .range([0, width - margin.left - margin.right])
+                        .padding(0.1);
+
+                    const y = d3.scaleLinear()
+                        .domain([0, d3.max(chartData, d => d.value)])
+                        .range([height - margin.top - margin.bottom, 0]);
+
+                    g.selectAll('.bar')
+                        .data(chartData)
+                        .enter().append('rect')
+                        .attr('class', 'bar')
+                        .attr('x', d => x(d.name))
+                        .attr('y', d => y(d.value))
+                        .attr('width', x.bandwidth())
+                        .attr('height', d => (height - margin.top - margin.bottom) - y(d.value))
+                        .attr('fill', '#c8956c');
+
+                    g.append('g')
+                        .attr('transform', `translate(0,${height - margin.top - margin.bottom})`)
+                        .call(d3.axisBottom(x));
+
+                    g.append('g')
+                        .call(d3.axisLeft(y));
+                }
+            }, [chartData]);
+
+            useEffect(() => {
+                const statusData = [
+                    { name: 'Prospects', value: stats.prospects },
+                    { name: 'Leads', value: stats.leads },
+                    { name: 'Customers', value: stats.customers }
+                ];
+                setChartData(statusData);
+            }, [leads]);
+
+            return React.createElement('div', {},
+                React.createElement('h2', { className: 'view-title' }, 'Analytics Dashboard'),
+                React.createElement('div', { className: 'stats-grid' },
+                    React.createElement('div', { className: 'stat-card' },
+                        React.createElement('div', { className: 'stat-value' }, stats.total),
+                        React.createElement('div', { className: 'stat-label' }, 'Total Leads')
+                    ),
+                    React.createElement('div', { className: 'stat-card' },
+                        React.createElement('div', { className: 'stat-value' }, stats.prospects),
+                        React.createElement('div', { className: 'stat-label' }, 'Prospects')
+                    ),
+                    React.createElement('div', { className: 'stat-card' },
+                        React.createElement('div', { className: 'stat-value' }, stats.leads),
+                        React.createElement('div', { className: 'stat-label' }, 'Leads')
+                    ),
+                    React.createElement('div', { className: 'stat-card' },
+                        React.createElement('div', { className: 'stat-value' }, stats.customers),
+                        React.createElement('div', { className: 'stat-label' }, 'Customers')
+                    ),
+                    React.createElement('div', { className: 'stat-card' },
+                        React.createElement('div', { className: 'stat-value' }, `$${stats.totalValue.toFixed(0)}`),
+                        React.createElement('div', { className: 'stat-label' }, 'Total Pipeline Value')
+                    ),
+                    React.createElement('div', { className: 'stat-card' },
+                        React.createElement('div', { className: 'stat-value' }, `$${stats.avgValue}`),
+                        React.createElement('div', { className: 'stat-label' }, 'Average Deal Size')
+                    )
+                ),
+                React.createElement('div', { className: 'chart-container' },
+                    React.createElement('h3', { className: 'section-title' }, 'Distribution by Status'),
+                    React.createElement('svg', { ref: chartRef, className: 'graph-svg' })
+                )
+            );
+        }
+
+        // Graph View Component
+        function GraphView({ leads }) {
+            const svgRef = useRef(null);
+
+            useEffect(() => {
+                if (!svgRef.current || leads.length === 0) return;
+
+                d3.select(svgRef.current).selectAll("*").remove();
+
+                const width = 800;
+                const height = 600;
+
+                const nodes = [
+                    { id: 'center', label: 'All Leads', x: width / 2, y: height / 2, type: 'center' }
+                ];
+
+                const statusGroups = {};
+                leads.forEach(lead => {
+                    if (!statusGroups[lead.status]) {
+                        statusGroups[lead.status] = [];
+                    }
+                    statusGroups[lead.status].push(lead);
+                });
+
+                let nodeId = 1;
+                const links = [];
+
+                Object.keys(statusGroups).forEach((status, idx) => {
+                    const angle = (idx / Object.keys(statusGroups).length) * 2 * Math.PI;
+                    const x = width / 2 + 200 * Math.cos(angle);
+                    const y = height / 2 + 200 * Math.sin(angle);
+
+                    const statusNodeId = `status-${nodeId}`;
+                    nodes.push({
+                        id: statusNodeId,
+                        label: `${status.charAt(0).toUpperCase() + status.slice(1)} (${statusGroups[status].length})`,
+                        x: x,
+                        y: y,
+                        type: 'status'
+                    });
+
+                    links.push({ source: 'center', target: statusNodeId });
+
+                    statusGroups[status].forEach((lead, leadIdx) => {
+                        const leadAngle = (leadIdx / statusGroups[status].length) * 2 * Math.PI;
+                        const leadX = x + 120 * Math.cos(leadAngle);
+                        const leadY = y + 120 * Math.sin(leadAngle);
+
+                        const leadNodeId = `lead-${nodeId}`;
+                        nodes.push({
+                            id: leadNodeId,
+                            label: lead.name.substring(0, 15),
+                            x: leadX,
+                            y: leadY,
+                            type: 'lead'
+                        });
+
+                        links.push({ source: statusNodeId, target: leadNodeId });
+                        nodeId++;
+                    });
+                });
+
+                const svg = d3.select(svgRef.current)
+                    .attr('width', width)
+                    .attr('height', height);
+
+                // Draw links
+                svg.selectAll('.link')
+                    .data(links)
+                    .enter()
+                    .append('line')
+                    .attr('class', 'link')
+                    .attr('x1', d => {
+                        const source = nodes.find(n => n.id === d.source);
+                        return source ? source.x : 0;
+                    })
+                    .attr('y1', d => {
+                        const source = nodes.find(n => n.id === d.source);
+                        return source ? source.y : 0;
+                    })
+                    .attr('x2', d => {
+                        const target = nodes.find(n => n.id === d.target);
+                        return target ? target.x : 0;
+                    })
+                    .attr('y2', d => {
+                        const target = nodes.find(n => n.id === d.target);
+                        return target ? target.y : 0;
+                    })
+                    .attr('stroke', '#ddd')
+                    .attr('stroke-width', 2);
+
+                // Draw nodes
+                const nodeGroups = svg.selectAll('.node')
+                    .data(nodes)
+                    .enter()
+                    .append('g')
+                    .attr('class', 'node')
+                    .attr('transform', d => `translate(${d.x},${d.y})`);
+
+                nodeGroups.append('circle')
+                    .attr('r', d => d.type === 'center' ? 30 : (d.type === 'status' ? 25 : 15))
+                    .attr('fill', d => {
+                        if (d.type === 'center') return '#c8956c';
+                        if (d.type === 'status') return '#1a6b5a';
+                        return '#e8e0d4';
+                    })
+                    .attr('stroke', '#0a0f1a')
+                    .attr('stroke-width', 2);
+
+                nodeGroups.append('text')
+                    .attr('text-anchor', 'middle')
+                    .attr('dy', '.3em')
+                    .attr('font-size', d => d.type === 'center' ? '11px' : '9px')
+                    .attr('font-weight', 'bold')
+                    .attr('fill', d => d.type === 'lead' ? '#0a0f1a' : 'white')
+                    .text(d => d.label)
+                    .style('pointer-events', 'none');
+
+            }, [leads]);
+
+            return React.createElement('div', {},
+                React.createElement('h2', { className: 'view-title' }, 'Graph View'),
+                React.createElement('div', { className: 'graph-container' },
+                    React.createElement('svg', { ref: svgRef, className: 'graph-svg' })
+                )
+            );
+        }
+
+        // Export View Component
+        function ExportView({ leads, userData }) {
+            const [exportFormat, setExportFormat] = useState(null);
+            const [message, setMessage] = useState('');
+
+            const generateCSV = () => {
+                const headers = ['Name', 'Company', 'Email', 'Phone', 'Status', 'Value', 'Industry', 'Source', 'Last Contact', 'Next Follow-up', 'Notes'];
+                const rows = leads.map(lead => [
+                    lead.name,
+                    lead.company || '',
+                    lead.email || '',
+                    lead.phone || '',
+                    lead.status || '',
+                    lead.value || '',
+                    lead.industry || '',
+                    lead.source || '',
+                    lead.lastContact || '',
+                    lead.nextFollowUp || '',
+                    (lead.notes || '').replace(/"/g, '""')
+                ]);
+
+                const csv = [headers.map(h => `"${h}"`).join(','), ...rows.map(r => r.map(v => `"${v}"`).join(','))].join('\n');
+                return csv;
+            };
+
+            const generateJSON = () => {
+                return JSON.stringify(leads, null, 2);
+            };
+
+            const generateMarkdown = () => {
+                let markdown = '# Lead Database\n\n';
+                markdown += `Generated: ${new Date().toLocaleString()}\n\n`;
+
+                const statusGroups = {};
+                leads.forEach(lead => {
+                    if (!statusGroups[lead.status]) {
+                        statusGroups[lead.status] = [];
+                    }
+                    statusGroups[lead.status].push(lead);
+                });
+
+                Object.keys(statusGroups).forEach(status => {
+                    markdown += `## ${status.charAt(0).toUpperCase() + status.slice(1)}\n\n`;
+                    statusGroups[status].forEach(lead => {
+                        markdown += `### ${lead.name}\n`;
+                        if (lead.company) markdown += `- **Company**: ${lead.company}\n`;
+                        if (lead.email) markdown += `- **Email**: ${lead.email}\n`;
+                        if (lead.phone) markdown += `- **Phone**: ${lead.phone}\n`;
+                        if (lead.value) markdown += `- **Value**: $${lead.value}\n`;
+                        if (lead.industry) markdown += `- **Industry**: ${lead.industry}\n`;
+                        if (lead.source) markdown += `- **Source**: ${lead.source}\n`;
+                        if (lead.lastContact) markdown += `- **Last Contact**: ${lead.lastContact}\n`;
+                        if (lead.nextFollowUp) markdown += `- **Next Follow-up**: ${lead.nextFollowUp}\n`;
+                        if (lead.notes) markdown += `- **Notes**: ${lead.notes}\n`;
+                        markdown += '\n';
+                    });
+                });
+
+                return markdown;
+            };
+
+            const generateObsidian = () => {
+                let obsidian = `# Whainow CRM Export\n\n`;
+                obsidian += `Exported: ${new Date().toLocaleString()}\n`;
+                obsidian += `User: ${userData.name}\n\n`;
+
+                obsidian += `## Summary\n`;
+                obsidian += `- Total Leads: ${leads.length}\n`;
+                obsidian += `- Prospects: ${leads.filter(l => l.status === 'prospect').length}\n`;
+                obsidian += `- Leads: ${leads.filter(l => l.status === 'lead').length}\n`;
+                obsidian += `- Customers: ${leads.filter(l => l.status === 'customer').length}\n\n`;
+
+                obsidian += `## Leads by Status\n\n`;
+
+                const statusGroups = {};
+                leads.forEach(lead => {
+                    if (!statusGroups[lead.status]) {
+                        statusGroups[lead.status] = [];
+                    }
+                    statusGroups[lead.status].push(lead);
+                });
+
+                Object.keys(statusGroups).forEach(status => {
+                    obsidian += `### ${status.charAt(0).toUpperCase() + status.slice(1)}\n\n`;
+                    statusGroups[status].forEach(lead => {
+                        obsidian += `#### ${lead.name}\n`;
+                        obsidian += `#lead-${lead.status} #source-${lead.source || 'unknown'}\n\n`;
+                        if (lead.company) obsidian += `**Company**: ${lead.company}\n`;
+                        if (lead.email) obsidian += `**Email**: [${lead.email}](mailto:${lead.email})\n`;
+                        if (lead.phone) obsidian += `**Phone**: ${lead.phone}\n`;
+                        if (lead.value) obsidian += `**Deal Value**: $${lead.value}\n`;
+                        if (lead.industry) obsidian += `**Industry**: ${lead.industry}\n`;
+                        if (lead.size) obsidian += `**Company Size**: ${lead.size}\n`;
+                        if (lead.website) obsidian += `**Website**: [${lead.website}](${lead.website})\n`;
+                        if (lead.source) obsidian += `**Source**: ${lead.source}\n`;
+                        if (lead.lastContact) obsidian += `**Last Contact**: ${lead.lastContact}\n`;
+                        if (lead.nextFollowUp) obsidian += `**Next Follow-up**: ${lead.nextFollowUp}\n`;
+                        if (lead.tags) obsidian += `**Tags**: ${lead.tags}\n`;
+                        if (lead.notes) obsidian += `**Notes**: ${lead.notes}\n`;
+                        obsidian += `\n---\n\n`;
+                    });
+                });
+
+                return obsidian;
+            };
+
+            const handleExport = (format) => {
+                let content = '';
+                let filename = '';
+                let mimeType = '';
+
+                if (format === 'csv') {
+                    content = generateCSV();
+                    filename = 'leads.csv';
+                    mimeType = 'text/csv';
+                } else if (format === 'json') {
+                    content = generateJSON();
+                    filename = 'leads.json';
+                    mimeType = 'application/json';
+                } else if (format === 'markdown') {
+                    content = generateMarkdown();
+                    filename = 'leads.md';
+                    mimeType = 'text/markdown';
+                } else if (format === 'obsidian') {
+                    content = generateObsidian();
+                    filename = 'leads.md';
+                    mimeType = 'text/markdown';
+                }
+
+                const blob = new Blob([content], { type: mimeType });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = filename;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+
+                setExportFormat(format);
+                setMessage(`✓ Exported as ${format.toUpperCase()} (${filename})`);
+                setTimeout(() => setMessage(''), 3000);
+            };
+
+            return React.createElement('div', {},
+                React.createElement('h2', { className: 'view-title' }, 'Export Data'),
+                message && React.createElement('div', { className: 'success-message' }, message),
+                React.createElement('div', { className: 'section' },
+                    React.createElement('h3', { className: 'section-title' }, 'Choose Export Format'),
+                    React.createElement('p', { style: { color: '#6b6560', marginBottom: '1.5rem' } },
+                        `Export your ${leads.length} leads in your preferred format.`
+                    ),
+                    React.createElement('div', { className: 'export-options' },
+                        React.createElement('button', {
+                            className: 'export-button',
+                            onClick: () => handleExport('csv')
+                        },
+                            React.createElement('div', { style: { fontSize: '1.5rem', marginBottom: '0.5rem' } }, '📊'),
+                            'CSV (Excel)'
+                        ),
+                        React.createElement('button', {
+                            className: 'export-button',
+                            onClick: () => handleExport('json')
+                        },
+                            React.createElement('div', { style: { fontSize: '1.5rem', marginBottom: '0.5rem' } }, '{ }'),
+                            'JSON'
+                        ),
+                        React.createElement('button', {
+                            className: 'export-button',
+                            onClick: () => handleExport('markdown')
+                        },
+                            React.createElement('div', { style: { fontSize: '1.5rem', marginBottom: '0.5rem' } }, '📝'),
+                            'Markdown'
+                        ),
+                        React.createElement('button', {
+                            className: 'export-button',
+                            onClick: () => handleExport('obsidian')
+                        },
+                            React.createElement('div', { style: { fontSize: '1.5rem', marginBottom: '0.5rem' } }, '🧠'),
+                            'Obsidian'
+                        )
+                    )
+                )
+            );
+        }
+
+        // Main App Component
+        function App() {
+            const [currentTab, setCurrentTab] = useState('leads');
+            const [leads, setLeads] = useState([]);
+            const [showModal, setShowModal] = useState(false);
+            const [selectedLead, setSelectedLead] = useState(null);
+            const [selectedIndex, setSelectedIndex] = useState(null);
+            const [userData, setUserData] = useState(null);
+
+            useEffect(() => {
+                const savedLeads = DataStore.get('leads');
+                if (Object.keys(savedLeads).length > 0) {
+                    setLeads(Object.values(savedLeads));
+                } else {
+                    setLeads([]);
+                }
+
+                const auth = DataStore.get('auth');
+                if (auth && auth.email) {
+                    setUserData(auth);
+                }
+            }, []);
+
+            const handleAddLead = () => {
+                setSelectedLead(null);
+                setSelectedIndex(null);
+                setShowModal(true);
+            };
+
+            const handleEditLead = (lead, index) => {
+                setSelectedLead(lead);
+                setSelectedIndex(index);
+                setShowModal(true);
+            };
+
+            const handleSaveLead = (formData) => {
+                if (selectedIndex !== null) {
+                    const updatedLeads = [...leads];
+                    updatedLeads[selectedIndex] = formData;
+                    setLeads(updatedLeads);
+                    const leadsObj = updatedLeads.reduce((acc, lead, idx) => {
+                        acc[idx] = lead;
+                        return acc;
+                    }, {});
+                    DataStore.set('leads', leadsObj);
+                } else {
+                    const newLeads = [...leads, formData];
+                    setLeads(newLeads);
+                    const leadsObj = newLeads.reduce((acc, lead, idx) => {
+                        acc[idx] = lead;
+                        return acc;
+                    }, {});
+                    DataStore.set('leads', leadsObj);
+                }
+                setShowModal(false);
+            };
+
+            const handleDeleteLead = (index) => {
+                const updatedLeads = leads.filter((_, i) => i !== index);
+                setLeads(updatedLeads);
+                const leadsObj = updatedLeads.reduce((acc, lead, idx) => {
+                    acc[idx] = lead;
+                    return acc;
+                }, {});
+                DataStore.set('leads', leadsObj);
+            };
+
+            return React.createElement('div', { className: 'app-container' },
+                React.createElement('header', { className: 'app-header' },
+                    React.createElement('h1', {}, 'Whainow'),
+                    React.createElement('p', { className: 'subtitle' }, 'Outreach CRM')
+                ),
+                React.createElement('nav', { className: 'tab-navigation' },
+                    React.createElement('button', {
+                        className: `tab-button ${currentTab === 'leads' ? 'active' : ''}`,
+                        onClick: () => setCurrentTab('leads')
+                    }, '📋 Leads'),
+                    React.createElement('button', {
+                        className: `tab-button ${currentTab === 'analytics' ? 'active' : ''}`,
+                        onClick: () => setCurrentTab('analytics')
+                    }, '📊 Analytics'),
+                    React.createElement('button', {
+                        className: `tab-button ${currentTab === 'graph' ? 'active' : ''}`,
+                        onClick: () => setCurrentTab('graph')
+                    }, '🔗 Graph View'),
+                    React.createElement('button', {
+                        className: `tab-button ${currentTab === 'export' ? 'active' : ''}`,
+                        onClick: () => setCurrentTab('export')
+                    }, '💾 Export')
+                ),
+                React.createElement('div', { className: 'content' },
+                    currentTab === 'leads' && React.createElement(LeadsView, {
+                        leads: leads,
+                        onAddLead: handleAddLead,
+                        onEditLead: handleEditLead,
+                        onDeleteLead: handleDeleteLead
+                    }),
+                    currentTab === 'analytics' && React.createElement(AnalyticsView, { leads: leads }),
+                    currentTab === 'graph' && React.createElement(GraphView, { leads: leads }),
+                    currentTab === 'export' && React.createElement(ExportView, { leads: leads, userData: userData })
+                ),
+                React.createElement(Modal, {
+                    isOpen: showModal,
+                    onClose: () => setShowModal(false)
+                },
+                    React.createElement(LeadForm, {
+                        lead: selectedLead,
+                        onSubmit: handleSaveLead,
+                        onCancel: () => setShowModal(false)
+                    })
+                )
+            );
+        }
+
+        // Auth wrapper component
+        function AppWithAuth() {
+            const [user, setUser] = useState(null);
+            const [loading, setLoading] = useState(true);
+
+            useEffect(() => {
+                const savedAuth = DataStore.get('auth');
+                if (savedAuth && savedAuth.email) {
+                    setUser(savedAuth);
+                }
+                setLoading(false);
             }, []);
 
             if (loading) {
-                return (
-                    <div className="app-container">
-                        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
-                            <div className="spinner"></div>
-                        </div>
-                    </div>
-                );
+                return React.createElement('div', {
+                    style: {
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        height: '100vh',
+                        fontFamily: 'DM Sans, sans-serif'
+                    }
+                }, 'Loading...');
             }
 
-            return (
-                <div className="app-container">
-                    <div className="app-header">
-                        <h1>whainow</h1>
-                        <div className="subtitle">Outreach Pipeline</div>
-                    </div>
-
-                    <div className="tabs-wrapper">
-                        <div className="tab-navigation">
-                            <button
-                                className={`tab-button ${activeTab === 'dashboard' ? 'active' : ''}`}
-                                onClick={() => setActiveTab('dashboard')}
-                            >
-                                Dashboard
-                            </button>
-                            <button
-                                className={`tab-button ${activeTab === 'add-lead' ? 'active' : ''}`}
-                                onClick={() => setActiveTab('add-lead')}
-                            >
-                                Add Lead
-                            </button>
-                            <button
-                                className={`tab-button ${activeTab === 'all-leads' ? 'active' : ''}`}
-                                onClick={() => setActiveTab('all-leads')}
-                            >
-                                All Leads
-                            </button>
-                            <button
-                                className={`tab-button ${activeTab === 'tasks' ? 'active' : ''}`}
-                                onClick={() => setActiveTab('tasks')}
-                            >
-                                Tasks
-                            </button>
-                            <button
-                                className={`tab-button ${activeTab === 'documents' ? 'active' : ''}`}
-                                onClick={() => setActiveTab('documents')}
-                            >
-                                Documents
-                            </button>
-                        </div>
-
-                        {activeTab === 'dashboard' && (
-                            <Dashboard leads={leads} tasks={tasks} categories={categories} principals={principals} />
-                        )}
-                        {activeTab === 'add-lead' && (
-                            <AddLead categories={categories} principals={principals} onLeadAdded={loadData} />
-                        )}
-                        {activeTab === 'all-leads' && (
-                            <AllLeads leads={leads} categories={categories} principals={principals} onDataUpdated={loadData} />
-                        )}
-                        {activeTab === 'tasks' && (
-                            <Tasks tasks={tasks} leads={leads} categories={categories} principals={principals} onDataUpdated={loadData} />
-                        )}
-                        {activeTab === 'documents' && (
-                            <Documents documents={documents} leads={leads} onDataUpdated={loadData} />
-                        )}
-                    </div>
-
-                    <ToastContainer toasts={toasts} onRemove={removeToast} />
-                </div>
-            );
-        };
+            return user
+                ? React.createElement(App)
+                : React.createElement(Auth, { onLogin: (userData) => setUser(userData) });
+        }
 
         ReactDOM.render(<AppWithAuth />, document.getElementById('root'));
     </script>
