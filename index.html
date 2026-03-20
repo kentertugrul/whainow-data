@@ -476,9 +476,16 @@
 
         .task-column {
             background: var(--paper);
-            border: 1px solid var(--warm);
+            border: 2px solid var(--warm);
             border-radius: 8px;
             padding: 1.5rem;
+            min-height: 200px;
+            transition: border-color 0.2s, background-color 0.2s;
+        }
+
+        .task-column.drag-over {
+            border-color: var(--accent);
+            background-color: rgba(200, 149, 108, 0.06);
         }
 
         .task-column h3 {
@@ -2488,8 +2495,8 @@
                             status: 'pending',
                             priority: parseInt(newTask.priority),
                             due_date: futureDate,
-                            lead_id: newTask.leadId ? parseInt(newTask.leadId) : null,
-                            assigned_to: newTask.assignedTo ? parseInt(newTask.assignedTo) : null,
+                            lead_id: newTask.leadId || null,
+                            assigned_to: newTask.assignedTo || null,
                             created_at: new Date().toISOString()
                         });
 
@@ -2525,12 +2532,55 @@
                 }
             };
 
+            const [draggedTaskId, setDraggedTaskId] = useState(null);
+
+            const handleDragStart = (e, taskId) => {
+                setDraggedTaskId(taskId);
+                e.dataTransfer.effectAllowed = 'move';
+                e.dataTransfer.setData('text/plain', taskId);
+                e.currentTarget.style.opacity = '0.5';
+            };
+
+            const handleDragEnd = (e) => {
+                e.currentTarget.style.opacity = '1';
+                setDraggedTaskId(null);
+            };
+
+            const handleDragOver = (e) => {
+                e.preventDefault();
+                e.dataTransfer.dropEffect = 'move';
+            };
+
+            const handleDragEnter = (e) => {
+                e.preventDefault();
+                e.currentTarget.classList.add('drag-over');
+            };
+
+            const handleDragLeave = (e) => {
+                e.currentTarget.classList.remove('drag-over');
+            };
+
+            const handleDrop = (e, newStatus) => {
+                e.preventDefault();
+                e.currentTarget.classList.remove('drag-over');
+                const taskId = e.dataTransfer.getData('text/plain');
+                if (taskId) {
+                    handleTaskStatusChange(taskId, newStatus);
+                }
+            };
+
             const TaskCard = ({ task }) => {
                 const lead = leads.find(l => l.id === task.lead_id);
                 const principal = principals.find(p => p.id === task.assigned_to);
 
                 return (
-                    <div className="task-card">
+                    <div
+                        className="task-card"
+                        draggable
+                        onDragStart={(e) => handleDragStart(e, task.id)}
+                        onDragEnd={handleDragEnd}
+                        style={{ cursor: 'grab' }}
+                    >
                         <div className="task-card-title">{task.title}</div>
                         <div className="task-card-meta">
                             {lead && <div>Lead: {lead.name}</div>}
@@ -2551,6 +2601,25 @@
                     </div>
                 );
             };
+
+            const TaskColumn = ({ status, title, taskList }) => (
+                <div
+                    className={`task-column ${status}`}
+                    onDragOver={handleDragOver}
+                    onDragEnter={handleDragEnter}
+                    onDragLeave={handleDragLeave}
+                    onDrop={(e) => handleDrop(e, status)}
+                >
+                    <h3>{title} ({taskList.length})</h3>
+                    {taskList.length === 0 ? (
+                        <div style={{ color: 'var(--grey)', fontSize: '0.9rem', padding: '1rem 0' }}>
+                            Drop tasks here
+                        </div>
+                    ) : (
+                        taskList.map(task => <TaskCard key={task.id} task={task} />)
+                    )}
+                </div>
+            );
 
             return (
                 <div className="tab-content">
@@ -2630,32 +2699,9 @@
                     </div>
 
                     <div className="tasks-columns">
-                        <div className="task-column pending">
-                            <h3>Pending ({pendingTasks.length})</h3>
-                            {pendingTasks.length === 0 ? (
-                                <div style={{ color: 'var(--grey)', fontSize: '0.9rem' }}>No pending tasks</div>
-                            ) : (
-                                pendingTasks.map(task => <TaskCard key={task.id} task={task} />)
-                            )}
-                        </div>
-
-                        <div className="task-column in_progress">
-                            <h3>In Progress ({inProgressTasks.length})</h3>
-                            {inProgressTasks.length === 0 ? (
-                                <div style={{ color: 'var(--grey)', fontSize: '0.9rem' }}>No tasks in progress</div>
-                            ) : (
-                                inProgressTasks.map(task => <TaskCard key={task.id} task={task} />)
-                            )}
-                        </div>
-
-                        <div className="task-column done">
-                            <h3>Done ({doneTasks.length})</h3>
-                            {doneTasks.length === 0 ? (
-                                <div style={{ color: 'var(--grey)', fontSize: '0.9rem' }}>No completed tasks</div>
-                            ) : (
-                                doneTasks.map(task => <TaskCard key={task.id} task={task} />)
-                            )}
-                        </div>
+                        <TaskColumn status="pending" title="Pending" taskList={pendingTasks} />
+                        <TaskColumn status="in_progress" title="In Progress" taskList={inProgressTasks} />
+                        <TaskColumn status="done" title="Done" taskList={doneTasks} />
                     </div>
                 </div>
             );
